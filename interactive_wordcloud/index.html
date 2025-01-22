@@ -71,24 +71,24 @@
             const maxSize = d3.max(words, d => d.size);
 
             // Create more dramatic font size scale
-            const fontScale = d3.scaleLog()  // Using log scale for better distribution
+            const fontScale = d3.scaleLog()
                 .domain([minSize, maxSize])
-                .range([14, 38]);  // Adjusted size range
+                .range([12, 32]);  // Slightly smaller max size
 
             // Create color scale with more variation
             const colorScale = d3.scaleLinear()
                 .domain([minSize, (minSize + maxSize) / 2, maxSize])
-                .range(['#74b9ff', '#0984e3', '#0052cc']);  // Blue gradient with more contrast
+                .range(['#74b9ff', '#0984e3', '#0052cc']);
 
             // Set up the word cloud layout
             const layout = d3.layout.cloud()
                 .size([width, height])
                 .words(words)
-                .padding(3)
-                .rotate(() => (~~(Math.random() * 2)) * 90)  // Only horizontal and vertical for better readability
+                .padding(8)  // Increased padding between words
+                .rotate(() => 0)  // No rotation for better readability
                 .font('Segoe UI')
-                .fontSize(d => fontScale(Math.max(d.size, minSize + 0.1)))  // Prevent log(0)
-                .spiral('archimedean')
+                .fontSize(d => fontScale(Math.max(d.size, minSize + 0.1)))
+                .spiral('rectangular')  // Changed to rectangular spiral for better spacing
                 .on('end', draw);
 
             // Start the layout
@@ -98,13 +98,31 @@
                 const svg = d3.select('#wordcloud')
                     .append('svg')
                     .attr('width', width)
-                    .attr('height', height);
+                    .attr('height', height)
+                    .style('background', 'white');  // Ensure white background
+
+                // Calculate the actual bounds of the cloud
+                let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+                words.forEach(d => {
+                    const w = d.text.length * (fontScale(Math.max(d.size, minSize + 0.1)) / 2);
+                    const h = fontScale(Math.max(d.size, minSize + 0.1));
+                    minX = Math.min(minX, d.x - w);
+                    maxX = Math.max(maxX, d.x + w);
+                    minY = Math.min(minY, d.y - h);
+                    maxY = Math.max(maxY, d.y + h);
+                });
+
+                // Calculate scale to fit all words
+                const scale = Math.min(
+                    width / (maxX - minX),
+                    height / (maxY - minY)
+                ) * 0.9;  // 90% of available space
 
                 const tooltip = d3.select('#tooltip');
 
-                // Create a group element for the words
+                // Create a group element for the words with adjusted transform
                 const wordGroup = svg.append('g')
-                    .attr('transform', `translate(${width/2},${height/2})`);
+                    .attr('transform', `translate(${width/2},${height/2}) scale(${scale})`);
 
                 // Add zoom behavior
                 const zoom = d3.zoom()
