@@ -19,7 +19,7 @@ def process_text(text):
     # Remove stopwords and non-alphabetic tokens
     stop_words = set(stopwords.words('english'))
     # Add custom stopwords relevant to the dataset
-    custom_stops = {'project', 'research', 'study', 'analysis', 'data', 'also'}
+    custom_stops = {'project', 'research', 'study', 'analysis', 'data', 'also', 'within', 'including'}
     stop_words.update(custom_stops)
     tokens = [word for word in tokens if word.isalpha() and word not in stop_words]
 
