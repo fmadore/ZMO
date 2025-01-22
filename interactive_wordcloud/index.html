@@ -51,6 +51,10 @@
         .controls {
             margin-bottom: 20px;
             text-align: center;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
         }
         select {
             padding: 8px 16px;
@@ -64,6 +68,17 @@
         select:hover {
             background-color: #f8f9fa;
         }
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        #wordCount {
+            width: 150px;
+        }
+        #wordCountValue {
+            min-width: 30px;
+        }
     </style>
 </head>
 <body>
@@ -75,6 +90,11 @@
             <option value="Lives_Ecologies">Lives and Ecologies</option>
             <option value="Religion-Intellectual-Culture">Religion and Intellectual Culture</option>
         </select>
+        <div class="slider-container">
+            <label for="wordCount">Number of words:</label>
+            <input type="range" id="wordCount" min="10" max="100" value="50" aria-label="Number of words to display">
+            <span id="wordCountValue">50</span>
+        </div>
     </div>
     <div id="wordcloud"></div>
     <div id="tooltip"></div>
@@ -82,6 +102,17 @@
     <script>
         const tooltip = d3.select('#tooltip');
         let currentWords = [];
+        let allWords = [];
+        let wordCountSlider = document.getElementById('wordCount');
+        let wordCountValue = document.getElementById('wordCountValue');
+        
+        // Update word count display
+        wordCountSlider.oninput = function() {
+            wordCountValue.textContent = this.value;
+            if (allWords.length > 0) {
+                updateWordCloud(allWords.slice(0, this.value));
+            }
+        }
         
         // Function to update the word cloud
         function updateWordCloud(words) {
@@ -176,7 +207,8 @@
 
         // Load initial data (combined)
         d3.json('word_frequencies_combined.json').then(function(words) {
-            updateWordCloud(words);
+            allWords = words;
+            updateWordCloud(words.slice(0, wordCountSlider.value));
         });
 
         // Handle unit selection changes
@@ -187,7 +219,8 @@
                 : `word_frequencies_${selectedUnit}.json`;
             
             d3.json(filename).then(function(words) {
-                updateWordCloud(words);
+                allWords = words;
+                updateWordCloud(words.slice(0, wordCountSlider.value));
             });
         });
     </script>
