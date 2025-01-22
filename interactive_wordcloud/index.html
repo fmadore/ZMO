@@ -66,19 +66,28 @@
             const width = document.getElementById('wordcloud').clientWidth;
             const height = document.getElementById('wordcloud').clientHeight;
 
-            // Create color scales
+            // Find min and max frequencies for better scaling
+            const minSize = d3.min(words, d => d.size);
+            const maxSize = d3.max(words, d => d.size);
+
+            // Create more dramatic font size scale
+            const fontScale = d3.scaleLog()  // Using log scale for better distribution
+                .domain([minSize, maxSize])
+                .range([14, 38]);  // Adjusted size range
+
+            // Create color scale with more variation
             const colorScale = d3.scaleLinear()
-                .domain([0, 50, 100])
-                .range(['#3498db', '#2ecc71', '#e74c3c']);
+                .domain([minSize, (minSize + maxSize) / 2, maxSize])
+                .range(['#74b9ff', '#0984e3', '#0052cc']);  // Blue gradient with more contrast
 
             // Set up the word cloud layout
             const layout = d3.layout.cloud()
                 .size([width, height])
                 .words(words)
                 .padding(3)
-                .rotate(() => (~~(Math.random() * 3) - 1) * 45)
+                .rotate(() => (~~(Math.random() * 2)) * 90)  // Only horizontal and vertical for better readability
                 .font('Segoe UI')
-                .fontSize(d => Math.sqrt(d.size) * 6)
+                .fontSize(d => fontScale(Math.max(d.size, minSize + 0.1)))  // Prevent log(0)
                 .spiral('archimedean')
                 .on('end', draw);
 
@@ -92,25 +101,6 @@
                     .attr('height', height);
 
                 const tooltip = d3.select('#tooltip');
-
-                // Add gradient definitions
-                const defs = svg.append('defs');
-                const gradient = defs.append('linearGradient')
-                    .attr('id', 'wordGradient')
-                    .attr('x1', '0%')
-                    .attr('y1', '0%')
-                    .attr('x2', '100%')
-                    .attr('y2', '100%');
-
-                gradient.append('stop')
-                    .attr('offset', '0%')
-                    .attr('stop-color', '#3498db');
-                gradient.append('stop')
-                    .attr('offset', '50%')
-                    .attr('stop-color', '#2ecc71');
-                gradient.append('stop')
-                    .attr('offset', '100%')
-                    .attr('stop-color', '#e74c3c');
 
                 // Create a group element for the words
                 const wordGroup = svg.append('g')
@@ -131,10 +121,10 @@
                     .enter()
                     .append('text')
                     .attr('class', 'word')
-                    .style('font-size', d => `${d.size}px`)
+                    .style('font-size', d => `${fontScale(Math.max(d.size, minSize + 0.1))}px`)
                     .style('font-family', 'Segoe UI')
-                    .style('fill', (d, i) => colorScale(i))
-                    .style('font-weight', d => d.size > 20 ? 'bold' : 'normal')
+                    .style('fill', d => colorScale(d.size))
+                    .style('font-weight', d => d.size > (maxSize + minSize) / 2 ? 'bold' : 'normal')
                     .attr('text-anchor', 'middle')
                     .attr('transform', d => `translate(${d.x},${d.y})rotate(${d.rotate})`)
                     .text(d => d.text)
@@ -142,7 +132,7 @@
                         d3.select(this)
                             .transition()
                             .duration(200)
-                            .style('font-size', `${d.size * 1.2}px`)
+                            .style('font-size', `${fontScale(Math.max(d.size, minSize + 0.1)) * 1.2}px`)
                             .style('filter', 'brightness(1.2)');
 
                         tooltip.transition()
@@ -160,7 +150,7 @@
                         d3.select(this)
                             .transition()
                             .duration(200)
-                            .style('font-size', `${d.size}px`)
+                            .style('font-size', `${fontScale(Math.max(d.size, minSize + 0.1))}px`)
                             .style('filter', 'none');
 
                         tooltip.transition()
