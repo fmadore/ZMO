@@ -11,20 +11,15 @@
             font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
             padding: 20px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
+            background: transparent;
         }
         #wordcloud {
             width: 90%;
             height: 800px;
-            background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
             margin: 20px auto;
-            transition: all 0.3s ease;
         }
         .word {
             transition: all 0.3s ease;
@@ -76,9 +71,9 @@
     <div class="controls">
         <select id="unitSelector" aria-label="Select unit to display">
             <option value="combined">All Units Combined</option>
-            <option value="State_Society">State & Society</option>
-            <option value="Lives_Ecologies">Lives & Ecologies</option>
-            <option value="Religion-Intellectual-Culture">Religion & Intellectual Culture</option>
+            <option value="State_Society">State and Society</option>
+            <option value="Lives_Ecologies">Lives and Ecologies</option>
+            <option value="Religion-Intellectual-Culture">Religion and Intellectual Culture</option>
         </select>
     </div>
     <div id="wordcloud"></div>
@@ -127,7 +122,7 @@
                     .append('svg')
                     .attr('width', width)
                     .attr('height', height)
-                    .style('background', '#ffffff');
+                    .style('background', 'transparent');
 
                 const scale = Math.min(width / (width * 1.5), height / (height * 1.5));
                 
