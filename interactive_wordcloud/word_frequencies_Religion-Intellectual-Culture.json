@@ -204,10 +204,6 @@
     "size": 6
   },
   {
-    "text": "may",
-    "size": 5
-  },
-  {
     "text": "concern",
     "size": 5
   },
@@ -241,10 +237,6 @@
   },
   {
     "text": "engagement",
-    "size": 5
-  },
-  {
-    "text": "one",
     "size": 5
   },
   {
@@ -397,6 +389,14 @@
   },
   {
     "text": "everyday",
+    "size": 3
+  },
+  {
+    "text": "diverse",
+    "size": 3
+  },
+  {
+    "text": "often",
     "size": 3
   }
 ]

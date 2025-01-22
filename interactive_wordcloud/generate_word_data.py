@@ -44,7 +44,7 @@ def process_text(text):
     # Remove stopwords and non-alphabetic tokens
     stop_words = set(stopwords.words('english'))
     # Add domain-specific stopwords that might skew the analysis
-    custom_stops = {'project', 'research', 'study', 'analysis', 'data', 'also', 'within', 'including'}
+    custom_stops = {'project', 'research', 'study', 'analysis', 'data', 'also', 'within', 'including', 'would', 'may', 'one', 'two'}
     stop_words.update(custom_stops)
     
     # Filter out non-alphabetic tokens and stopwords

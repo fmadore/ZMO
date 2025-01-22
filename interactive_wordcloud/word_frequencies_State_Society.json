@@ -108,10 +108,6 @@
     "size": 13
   },
   {
-    "text": "one",
-    "size": 12
-  },
-  {
     "text": "modern",
     "size": 12
   },
@@ -205,10 +201,6 @@
   },
   {
     "text": "berlin",
-    "size": 10
-  },
-  {
-    "text": "would",
     "size": 10
   },
   {
@@ -320,10 +312,6 @@
     "size": 8
   },
   {
-    "text": "two",
-    "size": 7
-  },
-  {
     "text": "form",
     "size": 7
   },
@@ -397,6 +385,18 @@
   },
   {
     "text": "transformation",
+    "size": 6
+  },
+  {
+    "text": "order",
+    "size": 6
+  },
+  {
+    "text": "first",
+    "size": 6
+  },
+  {
+    "text": "idea",
     "size": 6
   }
 ]
