@@ -8,65 +8,55 @@
     <script src="https://cdn.jsdelivr.net/npm/d3-cloud@1.2.5/build/d3.layout.cloud.min.js"></script>
     <style>
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            text-align: center;
             background: transparent;
         }
         #wordcloud {
-            width: 90%;
-            height: 800px;
+            width: 800px;
+            height: 600px;
             margin: 20px auto;
+            background: transparent;
         }
         .word {
             transition: all 0.3s ease;
             cursor: pointer;
         }
-        .word:hover {
-            opacity: 0.8;
-            filter: brightness(1.2);
-        }
         #tooltip {
             position: absolute;
-            padding: 12px 16px;
-            background: rgba(0,0,0,0.85);
+            text-align: center;
+            padding: 8px;
+            font: 12px sans-serif;
+            background: rgba(0, 0, 0, 0.8);
             color: white;
-            border-radius: 6px;
-            font-size: 14px;
+            border: 0px;
+            border-radius: 8px;
             pointer-events: none;
             opacity: 0;
             transition: all 0.2s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            z-index: 1000;
         }
         h1 {
             color: #2c3e50;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             font-weight: 500;
         }
         .controls {
-            margin-bottom: 20px;
-            text-align: center;
+            margin: 20px 0;
             display: flex;
-            gap: 20px;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            gap: 20px;
         }
         select {
             padding: 8px 16px;
             font-size: 16px;
-            border: 2px solid #2c3e50;
+            border: 1px solid #2c3e50;
             border-radius: 6px;
             background-color: white;
             cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        select:hover {
-            background-color: #f8f9fa;
         }
         .slider-container {
             display: flex;
@@ -75,9 +65,6 @@
         }
         #wordCount {
             width: 150px;
-        }
-        #wordCountValue {
-            min-width: 30px;
         }
     </style>
 </head>
@@ -113,6 +100,11 @@
                 updateWordCloud(allWords.slice(0, this.value));
             }
         }
+
+        // Function to normalize sizes
+        function normalizeSize(size, minSize, maxSize) {
+            return 10 + (size - minSize) * (90) / (maxSize - minSize);
+        }
         
         // Function to update the word cloud
         function updateWordCloud(words) {
@@ -127,24 +119,21 @@
             const minSize = d3.min(words, d => d.size);
             const maxSize = d3.max(words, d => d.size);
 
-            // Simple font size scale
-            const fontScale = d3.scaleLinear()
-                .domain([minSize, maxSize])
-                .range([16, 40]);
-
-            // Restore colorful scale
-            const colorScale = d3.scaleSequential()
-                .domain([minSize, maxSize])
-                .interpolator(d3.interpolateViridis);
+            // Normalize sizes
+            words = words.map(w => ({
+                ...w,
+                originalSize: w.size,
+                size: normalizeSize(w.size, minSize, maxSize)
+            }));
 
             // Set up the word cloud layout
             const layout = d3.layout.cloud()
-                .size([width * 1.5, height * 1.5])
+                .size([width, height])
                 .words(words)
-                .padding(20)
-                .rotate(0)
-                .font('Segoe UI')
-                .fontSize(d => fontScale(d.size))
+                .padding(5)
+                .rotate(() => ~~(Math.random() * 2) * 90)
+                .font('Arial')
+                .fontSize(d => d.size)
                 .spiral('archimedean')
                 .on('end', draw);
 
@@ -155,49 +144,47 @@
                     .attr('height', height)
                     .style('background', 'transparent');
 
-                const scale = Math.min(width / (width * 1.5), height / (height * 1.5));
-                
                 const wordGroup = svg.append('g')
-                    .attr('transform', `translate(${width/2},${height/2}) scale(${scale})`);
+                    .attr('transform', `translate(${width/2},${height/2})`);
 
                 wordGroup.selectAll('text')
                     .data(words)
                     .enter()
                     .append('text')
                     .attr('class', 'word')
-                    .style('font-size', d => `${fontScale(d.size)}px`)
-                    .style('font-family', 'Segoe UI')
-                    .style('fill', d => colorScale(d.size))
+                    .style('font-size', d => `${d.size}px`)
+                    .style('font-family', 'Arial')
+                    .style('fill', () => d3.schemeCategory10[~~(Math.random() * 10)])
                     .attr('text-anchor', 'middle')
-                    .attr('transform', d => `translate(${d.x},${d.y})`)
+                    .attr('transform', d => `translate(${[d.x, d.y]})rotate(${d.rotate})`)
                     .text(d => d.text)
                     .on('mouseover', function(event, d) {
                         d3.select(this)
                             .transition()
                             .duration(200)
-                            .style('font-size', `${fontScale(d.size) * 1.2}px`)
-                            .style('filter', 'brightness(1.2)');
+                            .style('font-size', `${d.size * 1.2}px`)
+                            .style('font-weight', 'bold');
 
                         tooltip.transition()
                             .duration(200)
-                            .style('opacity', 1);
+                            .style('opacity', 0.9);
                             
                         tooltip.html(`
-                            <strong>${d.text}</strong><br>
-                            Frequency: ${d.size}
+                            Word: ${d.text}<br>
+                            Frequency: ${d.originalSize}
                         `)
                             .style('left', (event.pageX + 10) + 'px')
-                            .style('top', (event.pageY - 10) + 'px');
+                            .style('top', (event.pageY - 28) + 'px');
                     })
                     .on('mouseout', function(event, d) {
                         d3.select(this)
                             .transition()
                             .duration(200)
-                            .style('font-size', `${fontScale(d.size)}px`)
-                            .style('filter', 'none');
+                            .style('font-size', `${d.size}px`)
+                            .style('font-weight', 'normal');
 
                         tooltip.transition()
-                            .duration(200)
+                            .duration(500)
                             .style('opacity', 0);
                     });
             }
