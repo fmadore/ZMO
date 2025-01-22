@@ -34,15 +34,16 @@ processed_text = ' '.join(lemmatized_tokens)
 
 # Create and generate a word cloud image
 wordcloud = WordCloud(width=1600, height=800, 
-                     background_color='white',
+                     background_color=None,
+                     mode='RGBA',
                      min_font_size=10).generate(processed_text)
 
 # Display the word cloud
-plt.figure(figsize=(20,10))
+plt.figure(figsize=(20,10), facecolor='none')
 plt.imshow(wordcloud, interpolation='bilinear')
 plt.axis('off')
 plt.tight_layout(pad=0)
 
-# Save the wordcloud
-plt.savefig('Wordcloud/wordcloud.png', dpi=300, bbox_inches='tight')
+# Save the wordcloud with transparency
+plt.savefig('Wordcloud/wordcloud.png', dpi=300, bbox_inches='tight', transparent=True)
 plt.close() 
