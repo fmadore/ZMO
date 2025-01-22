@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Word Cloud</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-cloud@1.2.5/build/d3.layout.cloud.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        #wordcloud {
+            width: 100%;
+            height: 800px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .word:hover {
+            opacity: 0.7;
+            cursor: pointer;
+        }
+        #tooltip {
+            position: absolute;
+            padding: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            border-radius: 4px;
+            font-size: 14px;
+            pointer-events: none;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="wordcloud"></div>
+    <div id="tooltip"></div>
+
+    <script>
+        // Load the JSON data
+        d3.json('word_frequencies.json').then(function(words) {
+            const width = document.getElementById('wordcloud').clientWidth;
+            const height = document.getElementById('wordcloud').clientHeight;
+
+            // Create color scale
+            const color = d3.scaleOrdinal(d3.schemeCategory10);
+
+            // Set up the word cloud layout
+            const layout = d3.layout.cloud()
+                .size([width, height])
+                .words(words)
+                .padding(5)
+                .rotate(() => ~~(Math.random() * 2) * 90)
+                .font('Arial')
+                .fontSize(d => Math.sqrt(d.size) * 5)
+                .on('end', draw);
+
+            // Start the layout
+            layout.start();
+
+            function draw(words) {
+                const svg = d3.select('#wordcloud')
+                    .append('svg')
+                    .attr('width', width)
+                    .attr('height', height);
+
+                const tooltip = d3.select('#tooltip');
+
+                // Create a group element for the words
+                const wordGroup = svg.append('g')
+                    .attr('transform', `translate(${width/2},${height/2})`);
+
+                // Add zoom behavior
+                const zoom = d3.zoom()
+                    .scaleExtent([0.5, 4])
+                    .on('zoom', (event) => {
+                        wordGroup.attr('transform', event.transform);
+                    });
+
+                svg.call(zoom);
+
+                // Add the words
+                wordGroup.selectAll('text')
+                    .data(words)
+                    .enter()
+                    .append('text')
+                    .attr('class', 'word')
+                    .style('font-size', d => `${d.size}px`)
+                    .style('font-family', 'Arial')
+                    .style('fill', (d, i) => color(i))
+                    .attr('text-anchor', 'middle')
+                    .attr('transform', d => `translate(${d.x},${d.y})rotate(${d.rotate})`)
+                    .text(d => d.text)
+                    .on('mouseover', function(event, d) {
+                        d3.select(this)
+                            .transition()
+                            .duration(200)
+                            .style('font-size', `${d.size * 1.2}px`);
+
+                        tooltip.style('opacity', 1)
+                            .html(`Word: ${d.text}<br>Frequency: ${d.size}`)
+                            .style('left', (event.pageX + 10) + 'px')
+                            .style('top', (event.pageY - 10) + 'px');
+                    })
+                    .on('mouseout', function(event, d) {
+                        d3.select(this)
+                            .transition()
+                            .duration(200)
+                            .style('font-size', `${d.size}px`);
+
+                        tooltip.style('opacity', 0);
+                    })
+                    .on('click', (event, d) => {
+                        console.log(`Clicked word: ${d.text} (frequency: ${d.size})`);
+                    });
+            }
+        });
+    </script>
+</body>
+</html> 
