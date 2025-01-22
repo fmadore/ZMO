@@ -75,17 +75,17 @@
                 .domain([minSize, maxSize])
                 .range([16, 40]);
 
-            // Simple blue color scale
-            const colorScale = d3.scaleLinear()
+            // Restore colorful scale
+            const colorScale = d3.scaleSequential()
                 .domain([minSize, maxSize])
-                .range(['#9ec3ff', '#2171f5']);
+                .interpolator(d3.interpolateViridis);
 
             // Set up the word cloud layout
             const layout = d3.layout.cloud()
-                .size([width * 1.5, height * 1.5])  // Much larger layout area
+                .size([width * 1.5, height * 1.5])  // Keep larger layout area
                 .words(words)
-                .padding(20)  // Much more padding between words
-                .rotate(0)    // No rotation
+                .padding(20)  // Keep increased padding
+                .rotate(0)    // Keep no rotation
                 .font('Segoe UI')
                 .fontSize(d => fontScale(d.size))
                 .spiral('archimedean')
@@ -120,6 +120,12 @@
                     .attr('transform', d => `translate(${d.x},${d.y})`)
                     .text(d => d.text)
                     .on('mouseover', function(event, d) {
+                        d3.select(this)
+                            .transition()
+                            .duration(200)
+                            .style('font-size', `${fontScale(d.size) * 1.2}px`)
+                            .style('filter', 'brightness(1.2)');
+
                         tooltip.transition()
                             .duration(200)
                             .style('opacity', 1);
@@ -132,6 +138,12 @@
                             .style('top', (event.pageY - 10) + 'px');
                     })
                     .on('mouseout', function(event, d) {
+                        d3.select(this)
+                            .transition()
+                            .duration(200)
+                            .style('font-size', `${fontScale(d.size)}px`)
+                            .style('filter', 'none');
+
                         tooltip.transition()
                             .duration(200)
                             .style('opacity', 0);
