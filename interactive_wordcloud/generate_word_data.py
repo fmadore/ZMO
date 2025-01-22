@@ -4,6 +4,7 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 import json
 from collections import Counter
+import os
 
 # Download necessary NLTK data packages
 nltk.download('punkt')
@@ -21,7 +22,9 @@ def process_text(file_path):
 
     # Remove stopwords and non-alphabetic tokens
     stop_words = set(stopwords.words('english'))
-    stop_words.add('project')  # Add custom stopwords
+    # Add custom stopwords relevant to the dataset
+    custom_stops = {'project', 'research', 'study', 'analysis', 'data'}
+    stop_words.update(custom_stops)
     tokens = [word for word in tokens if word.isalpha() and word not in stop_words]
 
     # Lemmatization
@@ -34,9 +37,14 @@ def process_text(file_path):
     # Convert to list of objects for D3.js
     word_data = [{"text": word, "size": count} for word, count in word_freq.most_common(100)]
 
-    # Save to JSON file
-    with open('interactive_wordcloud/word_frequencies.json', 'w', encoding='utf-8') as f:
+    # Save to JSON file in the same directory as this script
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    json_path = os.path.join(current_dir, 'word_frequencies.json')
+    with open(json_path, 'w', encoding='utf-8') as f:
         json.dump(word_data, f, ensure_ascii=False, indent=2)
 
 if __name__ == "__main__":
-    process_text('../Wordcloud/Projects_abstracts.txt') 
+    # The text file is in the same directory as the script
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(current_dir, 'Religion-Intellectual-Culture.txt')
+    process_text(file_path) 
