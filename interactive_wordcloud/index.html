@@ -8,35 +8,55 @@
     <script src="https://cdn.jsdelivr.net/npm/d3-cloud@1.2.5/build/d3.layout.cloud.min.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: #f0f0f0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         #wordcloud {
-            width: 100%;
+            width: 90%;
             height: 800px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            margin: 20px auto;
+            transition: all 0.3s ease;
+        }
+        .word {
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
         .word:hover {
-            opacity: 0.7;
-            cursor: pointer;
+            opacity: 0.8;
+            filter: brightness(1.2);
         }
         #tooltip {
             position: absolute;
-            padding: 10px;
-            background: rgba(0,0,0,0.8);
+            padding: 12px 16px;
+            background: rgba(0,0,0,0.85);
             color: white;
-            border-radius: 4px;
+            border-radius: 6px;
             font-size: 14px;
             pointer-events: none;
             opacity: 0;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 500;
         }
     </style>
 </head>
 <body>
+    <h1>Religion & Intellectual Culture Word Cloud</h1>
     <div id="wordcloud"></div>
     <div id="tooltip"></div>
 
@@ -46,17 +66,20 @@
             const width = document.getElementById('wordcloud').clientWidth;
             const height = document.getElementById('wordcloud').clientHeight;
 
-            // Create color scale
-            const color = d3.scaleOrdinal(d3.schemeCategory10);
+            // Create color scales
+            const colorScale = d3.scaleLinear()
+                .domain([0, 50, 100])
+                .range(['#3498db', '#2ecc71', '#e74c3c']);
 
             // Set up the word cloud layout
             const layout = d3.layout.cloud()
                 .size([width, height])
                 .words(words)
-                .padding(5)
-                .rotate(() => ~~(Math.random() * 2) * 90)
-                .font('Arial')
-                .fontSize(d => Math.sqrt(d.size) * 5)
+                .padding(3)
+                .rotate(() => (~~(Math.random() * 3) - 1) * 45)
+                .font('Segoe UI')
+                .fontSize(d => Math.sqrt(d.size) * 6)
+                .spiral('archimedean')
                 .on('end', draw);
 
             // Start the layout
@@ -69,6 +92,25 @@
                     .attr('height', height);
 
                 const tooltip = d3.select('#tooltip');
+
+                // Add gradient definitions
+                const defs = svg.append('defs');
+                const gradient = defs.append('linearGradient')
+                    .attr('id', 'wordGradient')
+                    .attr('x1', '0%')
+                    .attr('y1', '0%')
+                    .attr('x2', '100%')
+                    .attr('y2', '100%');
+
+                gradient.append('stop')
+                    .attr('offset', '0%')
+                    .attr('stop-color', '#3498db');
+                gradient.append('stop')
+                    .attr('offset', '50%')
+                    .attr('stop-color', '#2ecc71');
+                gradient.append('stop')
+                    .attr('offset', '100%')
+                    .attr('stop-color', '#e74c3c');
 
                 // Create a group element for the words
                 const wordGroup = svg.append('g')
@@ -83,15 +125,16 @@
 
                 svg.call(zoom);
 
-                // Add the words
+                // Add the words with enhanced styling
                 wordGroup.selectAll('text')
                     .data(words)
                     .enter()
                     .append('text')
                     .attr('class', 'word')
                     .style('font-size', d => `${d.size}px`)
-                    .style('font-family', 'Arial')
-                    .style('fill', (d, i) => color(i))
+                    .style('font-family', 'Segoe UI')
+                    .style('fill', (d, i) => colorScale(i))
+                    .style('font-weight', d => d.size > 20 ? 'bold' : 'normal')
                     .attr('text-anchor', 'middle')
                     .attr('transform', d => `translate(${d.x},${d.y})rotate(${d.rotate})`)
                     .text(d => d.text)
@@ -99,10 +142,17 @@
                         d3.select(this)
                             .transition()
                             .duration(200)
-                            .style('font-size', `${d.size * 1.2}px`);
+                            .style('font-size', `${d.size * 1.2}px`)
+                            .style('filter', 'brightness(1.2)');
 
-                        tooltip.style('opacity', 1)
-                            .html(`Word: ${d.text}<br>Frequency: ${d.size}`)
+                        tooltip.transition()
+                            .duration(200)
+                            .style('opacity', 1);
+                            
+                        tooltip.html(`
+                            <strong>${d.text}</strong><br>
+                            Frequency: ${d.size}
+                        `)
                             .style('left', (event.pageX + 10) + 'px')
                             .style('top', (event.pageY - 10) + 'px');
                     })
@@ -110,9 +160,12 @@
                         d3.select(this)
                             .transition()
                             .duration(200)
-                            .style('font-size', `${d.size}px`);
+                            .style('font-size', `${d.size}px`)
+                            .style('filter', 'none');
 
-                        tooltip.style('opacity', 0);
+                        tooltip.transition()
+                            .duration(200)
+                            .style('opacity', 0);
                     })
                     .on('click', (event, d) => {
                         console.log(`Clicked word: ${d.text} (frequency: ${d.size})`);
