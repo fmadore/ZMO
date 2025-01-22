@@ -36,6 +36,8 @@ tokens = [word.lower() for word in tokens]
 # stopwords are common words like 'the', 'is', 'at' that don't add meaning
 # Also remove numbers, punctuation, etc. by keeping only alphabetic tokens
 stop_words = set(stopwords.words('english'))
+# Add custom stopwords relevant to research projects
+stop_words.add('project')
 tokens = [word for word in tokens if word.isalpha() and word not in stop_words]
 
 # Text Preprocessing Step 4: Lemmatization
