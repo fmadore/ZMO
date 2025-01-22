@@ -12,10 +12,6 @@
     "size": 41
   },
   {
-    "text": "also",
-    "size": 40
-  },
-  {
     "text": "life",
     "size": 39
   },
@@ -184,10 +180,6 @@
     "size": 16
   },
   {
-    "text": "within",
-    "size": 16
-  },
-  {
     "text": "change",
     "size": 16
   },
@@ -269,10 +261,6 @@
   },
   {
     "text": "light",
-    "size": 14
-  },
-  {
-    "text": "including",
     "size": 14
   },
   {
@@ -397,6 +385,18 @@
   },
   {
     "text": "people",
+    "size": 12
+  },
+  {
+    "text": "home",
+    "size": 12
+  },
+  {
+    "text": "unit",
+    "size": 12
+  },
+  {
+    "text": "may",
     "size": 12
   }
 ]
