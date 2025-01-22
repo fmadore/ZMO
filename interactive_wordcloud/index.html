@@ -70,25 +70,25 @@
             const minSize = d3.min(words, d => d.size);
             const maxSize = d3.max(words, d => d.size);
 
-            // Create more dramatic font size scale
-            const fontScale = d3.scaleLog()
+            // Simple font size scale
+            const fontScale = d3.scaleLinear()
                 .domain([minSize, maxSize])
-                .range([12, 32]);  // Slightly smaller max size
+                .range([16, 40]);
 
-            // Create color scale with more variation
+            // Simple blue color scale
             const colorScale = d3.scaleLinear()
-                .domain([minSize, (minSize + maxSize) / 2, maxSize])
-                .range(['#74b9ff', '#0984e3', '#0052cc']);
+                .domain([minSize, maxSize])
+                .range(['#9ec3ff', '#2171f5']);
 
             // Set up the word cloud layout
             const layout = d3.layout.cloud()
-                .size([width, height])
+                .size([width * 1.5, height * 1.5])  // Much larger layout area
                 .words(words)
-                .padding(8)  // Increased padding between words
-                .rotate(() => 0)  // No rotation for better readability
+                .padding(20)  // Much more padding between words
+                .rotate(0)    // No rotation
                 .font('Segoe UI')
-                .fontSize(d => fontScale(Math.max(d.size, minSize + 0.1)))
-                .spiral('rectangular')  // Changed to rectangular spiral for better spacing
+                .fontSize(d => fontScale(d.size))
+                .spiral('archimedean')
                 .on('end', draw);
 
             // Start the layout
@@ -99,60 +99,27 @@
                     .append('svg')
                     .attr('width', width)
                     .attr('height', height)
-                    .style('background', 'white');  // Ensure white background
+                    .style('background', '#ffffff');
 
-                // Calculate the actual bounds of the cloud
-                let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
-                words.forEach(d => {
-                    const w = d.text.length * (fontScale(Math.max(d.size, minSize + 0.1)) / 2);
-                    const h = fontScale(Math.max(d.size, minSize + 0.1));
-                    minX = Math.min(minX, d.x - w);
-                    maxX = Math.max(maxX, d.x + w);
-                    minY = Math.min(minY, d.y - h);
-                    maxY = Math.max(maxY, d.y + h);
-                });
-
-                // Calculate scale to fit all words
-                const scale = Math.min(
-                    width / (maxX - minX),
-                    height / (maxY - minY)
-                ) * 0.9;  // 90% of available space
-
-                const tooltip = d3.select('#tooltip');
-
-                // Create a group element for the words with adjusted transform
+                // Center the visualization
+                const scale = Math.min(width / (width * 1.5), height / (height * 1.5));
+                
                 const wordGroup = svg.append('g')
                     .attr('transform', `translate(${width/2},${height/2}) scale(${scale})`);
 
-                // Add zoom behavior
-                const zoom = d3.zoom()
-                    .scaleExtent([0.5, 4])
-                    .on('zoom', (event) => {
-                        wordGroup.attr('transform', event.transform);
-                    });
-
-                svg.call(zoom);
-
-                // Add the words with enhanced styling
+                // Add the words
                 wordGroup.selectAll('text')
                     .data(words)
                     .enter()
                     .append('text')
                     .attr('class', 'word')
-                    .style('font-size', d => `${fontScale(Math.max(d.size, minSize + 0.1))}px`)
+                    .style('font-size', d => `${fontScale(d.size)}px`)
                     .style('font-family', 'Segoe UI')
                     .style('fill', d => colorScale(d.size))
-                    .style('font-weight', d => d.size > (maxSize + minSize) / 2 ? 'bold' : 'normal')
                     .attr('text-anchor', 'middle')
-                    .attr('transform', d => `translate(${d.x},${d.y})rotate(${d.rotate})`)
+                    .attr('transform', d => `translate(${d.x},${d.y})`)
                     .text(d => d.text)
                     .on('mouseover', function(event, d) {
-                        d3.select(this)
-                            .transition()
-                            .duration(200)
-                            .style('font-size', `${fontScale(Math.max(d.size, minSize + 0.1)) * 1.2}px`)
-                            .style('filter', 'brightness(1.2)');
-
                         tooltip.transition()
                             .duration(200)
                             .style('opacity', 1);
@@ -165,18 +132,9 @@
                             .style('top', (event.pageY - 10) + 'px');
                     })
                     .on('mouseout', function(event, d) {
-                        d3.select(this)
-                            .transition()
-                            .duration(200)
-                            .style('font-size', `${fontScale(Math.max(d.size, minSize + 0.1))}px`)
-                            .style('filter', 'none');
-
                         tooltip.transition()
                             .duration(200)
                             .style('opacity', 0);
-                    })
-                    .on('click', (event, d) => {
-                        console.log(`Clicked word: ${d.text} (frequency: ${d.size})`);
                     });
             }
         });
