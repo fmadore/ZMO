@@ -53,18 +53,49 @@
             margin-bottom: 30px;
             font-weight: 500;
         }
+        .controls {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        select {
+            padding: 8px 16px;
+            font-size: 16px;
+            border: 2px solid #2c3e50;
+            border-radius: 6px;
+            background-color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        select:hover {
+            background-color: #f8f9fa;
+        }
     </style>
 </head>
 <body>
     <h1>Religion & Intellectual Culture Word Cloud</h1>
+    <div class="controls">
+        <select id="unitSelector" aria-label="Select unit to display">
+            <option value="combined">All Units Combined</option>
+            <option value="State_Society">State & Society</option>
+            <option value="Lives_Ecologies">Lives & Ecologies</option>
+            <option value="Religion-Intellectual-Culture">Religion & Intellectual Culture</option>
+        </select>
+    </div>
     <div id="wordcloud"></div>
     <div id="tooltip"></div>
 
     <script>
-        // Load the JSON data
-        d3.json('word_frequencies.json').then(function(words) {
+        const tooltip = d3.select('#tooltip');
+        let currentWords = [];
+        
+        // Function to update the word cloud
+        function updateWordCloud(words) {
+            currentWords = words;
             const width = document.getElementById('wordcloud').clientWidth;
             const height = document.getElementById('wordcloud').clientHeight;
+
+            // Clear existing word cloud
+            d3.select('#wordcloud').select('svg').remove();
 
             // Find min and max frequencies for better scaling
             const minSize = d3.min(words, d => d.size);
@@ -82,17 +113,14 @@
 
             // Set up the word cloud layout
             const layout = d3.layout.cloud()
-                .size([width * 1.5, height * 1.5])  // Keep larger layout area
+                .size([width * 1.5, height * 1.5])
                 .words(words)
-                .padding(20)  // Keep increased padding
-                .rotate(0)    // Keep no rotation
+                .padding(20)
+                .rotate(0)
                 .font('Segoe UI')
                 .fontSize(d => fontScale(d.size))
                 .spiral('archimedean')
                 .on('end', draw);
-
-            // Start the layout
-            layout.start();
 
             function draw(words) {
                 const svg = d3.select('#wordcloud')
@@ -101,13 +129,11 @@
                     .attr('height', height)
                     .style('background', '#ffffff');
 
-                // Center the visualization
                 const scale = Math.min(width / (width * 1.5), height / (height * 1.5));
                 
                 const wordGroup = svg.append('g')
                     .attr('transform', `translate(${width/2},${height/2}) scale(${scale})`);
 
-                // Add the words
                 wordGroup.selectAll('text')
                     .data(words)
                     .enter()
@@ -149,6 +175,25 @@
                             .style('opacity', 0);
                     });
             }
+
+            layout.start();
+        }
+
+        // Load initial data (combined)
+        d3.json('word_frequencies_combined.json').then(function(words) {
+            updateWordCloud(words);
+        });
+
+        // Handle unit selection changes
+        d3.select('#unitSelector').on('change', function() {
+            const selectedUnit = this.value;
+            const filename = selectedUnit === 'combined' 
+                ? 'word_frequencies_combined.json' 
+                : `word_frequencies_${selectedUnit}.json`;
+            
+            d3.json(filename).then(function(words) {
+                updateWordCloud(words);
+            });
         });
     </script>
 </body>
