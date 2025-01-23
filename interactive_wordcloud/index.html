@@ -18,17 +18,11 @@
             text-align: center;
             background: transparent;
         }
-        #wordcloud-container {
-            width: 100%; /* Use full width of the parent */
-            max-width: 800px; /* Maximum width */
-            height: auto; /* Maintain aspect ratio */
-            max-height: 600px; /* Maximum height */
+        #wordcloud {
+            width: 800px;
+            height: 600px;
             margin: 20px auto;
             background: transparent;
-        }
-        #wordcloud {
-          width: 100%;
-          height: 100%;
         }
         .word {
             transition: all 0.3s ease;
@@ -93,9 +87,7 @@
             <span id="wordCountValue">75</span>
         </div>
     </div>
-    <div id="wordcloud-container">
-      <div id="wordcloud"></div>
-    </div>
+    <div id="wordcloud"></div>
     <div id="tooltip"></div>
 
     <script>
@@ -120,10 +112,9 @@
         
         // Function to update the word cloud
         function updateWordCloud(words) {
-          currentWords = words;
-          const container = document.getElementById('wordcloud-container');
-          const width = container.offsetWidth;
-          const height = container.offsetHeight;
+            currentWords = words;
+            const width = document.getElementById('wordcloud').clientWidth;
+            const height = document.getElementById('wordcloud').clientHeight;
 
             // Clear existing word cloud
             d3.select('#wordcloud').select('svg').remove();
@@ -223,13 +214,6 @@
                 updateWordCloud(words.slice(0, wordCountSlider.value));
             });
         });
-
-        // Resize the wordcloud when the window is resized
-        window.addEventListener('resize', () => {
-            if (currentWords.length > 0) {
-                updateWordCloud(currentWords);
-            }
-        });
     </script>
 </body>
-</html>
+</html> 
