@@ -146,8 +146,10 @@
         });
 
         // Function to normalize sizes
-        function normalizeSize(size, minSize, maxSize) {
-            return 10 + (size - minSize) * (90) / (maxSize - minSize);
+        function normalizeSize(size, minSize, maxSize, containerWidth) {
+            // Scale factor based on container width
+            const scaleFactor = containerWidth < 500 ? 0.5 : 1;
+            return (10 + (size - minSize) * (90) / (maxSize - minSize)) * scaleFactor;
         }
         
         // Function to update the word cloud
@@ -164,18 +166,21 @@
             const minSize = d3.min(words, d => d.size);
             const maxSize = d3.max(words, d => d.size);
 
-            // Normalize sizes
+            // Normalize sizes with container width consideration
             words = words.map(w => ({
                 ...w,
                 originalSize: w.size,
-                size: normalizeSize(w.size, minSize, maxSize)
+                size: normalizeSize(w.size, minSize, maxSize, width)
             }));
+
+            // Adjust padding based on container width
+            const padding = width < 500 ? 2 : 6;
 
             // Set up the word cloud layout
             const layout = d3.layout.cloud()
                 .size([width, height])
                 .words(words)
-                .padding(6)
+                .padding(padding)
                 .rotate(() => ~~(Math.random() * 2) * 90)
                 .font('Muli')
                 .fontSize(d => d.size)
@@ -190,8 +195,11 @@
                     .attr('viewBox', `0 0 ${width} ${height}`)
                     .style('background', 'transparent');
 
+                // Adjust scale based on container width
+                const scale = width < 500 ? 0.99 : 0.97;
+
                 const wordGroup = svg.append('g')
-                    .attr('transform', `translate(${width/2},${height/2}) scale(0.97)`);
+                    .attr('transform', `translate(${width/2},${height/2}) scale(${scale})`);
 
                 wordGroup.selectAll('text')
                     .data(words)
