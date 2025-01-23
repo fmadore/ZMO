@@ -19,8 +19,7 @@
             background: transparent;
         }
         #wordcloud {
-            width: 100%;
-            max-width: 800px;
+            width: 800px;
             height: 600px;
             margin: 20px auto;
             background: transparent;
@@ -71,31 +70,6 @@
         #wordCount {
             width: 150px;
         }
-        
-        @media screen and (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            
-            #wordcloud {
-                height: 400px;  /* Smaller height for mobile */
-            }
-            
-            .controls {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            select, .slider-container {
-                width: 100%;
-                max-width: 300px;
-            }
-            
-            h1 {
-                font-size: 1.5em;
-                margin-bottom: 15px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -139,23 +113,8 @@
         // Function to update the word cloud
         function updateWordCloud(words) {
             currentWords = words;
-            const container = document.getElementById('wordcloud');
-            const width = container.clientWidth;
-            const height = container.clientHeight;
-            
-            // Adjust font sizes for mobile
-            function getMinFontSize() {
-                return window.innerWidth <= 768 ? 8 : 10;  // Smaller minimum font size on mobile
-            }
-            
-            function getMaxFontSize() {
-                return window.innerWidth <= 768 ? 40 : 90;  // Smaller maximum font size on mobile
-            }
-            
-            // Update normalize size function
-            function normalizeSize(size, minSize, maxSize) {
-                return getMinFontSize() + (size - minSize) * (getMaxFontSize() - getMinFontSize()) / (maxSize - minSize);
-            }
+            const width = document.getElementById('wordcloud').clientWidth;
+            const height = document.getElementById('wordcloud').clientHeight;
 
             // Clear existing word cloud
             d3.select('#wordcloud').select('svg').remove();
