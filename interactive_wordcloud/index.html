@@ -14,17 +14,18 @@
         body {
             font-family: 'Muli', Arial, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             text-align: center;
             background: transparent;
             overflow: hidden;
+            width: 100%;
+            height: 100%;
         }
         #wordcloud {
             width: 100%;
-            height: calc(100vh - 150px);
+            aspect-ratio: 16/9;
             margin: 0 auto;
             background: transparent;
-            overflow: hidden;
         }
         .word {
             transition: all 0.3s ease;
@@ -33,8 +34,8 @@
         #tooltip {
             position: absolute;
             text-align: center;
-            padding: 8px;
-            font: 12px 'Muli', sans-serif;
+            padding: 0.5rem;
+            font-size: clamp(0.7rem, 1.5vw, 0.9rem);
             background: rgba(0, 0, 0, 0.8);
             color: white;
             border: 0px;
@@ -44,22 +45,25 @@
             transition: all 0.2s ease;
         }
         h1 {
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            margin: 0.5rem 0;
+            padding: 0 1rem;
             color: #2c3e50;
             text-align: center;
-            margin: 10px 0;
             font-weight: 500;
         }
         .controls {
-            margin: 10px 0;
+            padding: 0.5rem;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px;
+            gap: 1rem;
             flex-wrap: wrap;
         }
         select {
-            padding: 8px 16px;
-            font-size: 16px;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            padding: 0.3rem 0.6rem;
+            max-width: 90vw;
             border: 1px solid #2c3e50;
             border-radius: 6px;
             background-color: white;
@@ -68,10 +72,20 @@
         .slider-container {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 0.5rem;
+            font-size: clamp(0.8rem, 2vw, 1rem);
         }
         #wordCount {
-            width: 150px;
+            width: clamp(100px, 20vw, 150px);
+        }
+        @media (max-width: 600px) {
+            .controls {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            #wordcloud {
+                aspect-ratio: 4/3;
+            }
         }
     </style>
 </head>
@@ -110,7 +124,8 @@
 
         // Function to normalize sizes
         function normalizeSize(size, minSize, maxSize) {
-            return 10 + (size - minSize) * (90) / (maxSize - minSize);
+            const baseSize = Math.min(window.innerWidth, window.innerHeight) / 50;
+            return baseSize + (size - minSize) * (baseSize * 4) / (maxSize - minSize);
         }
         
         // Function to update the word cloud
@@ -197,6 +212,13 @@
             }
 
             layout.start();
+
+            // Add window resize handler
+            window.addEventListener('resize', debounce(() => {
+                if (currentWords.length > 0) {
+                    updateWordCloud(currentWords);
+                }
+            }, 250));
         }
 
         // Load initial data (combined)
@@ -217,6 +239,19 @@
                 updateWordCloud(words.slice(0, wordCountSlider.value));
             });
         });
+
+        // Debounce function to prevent too many resize updates
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
     </script>
 </body>
 </html> 
