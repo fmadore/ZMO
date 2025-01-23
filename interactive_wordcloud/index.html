@@ -134,7 +134,7 @@
             const layout = d3.layout.cloud()
                 .size([width, height])
                 .words(words)
-                .padding(5)
+                .padding(6)
                 .rotate(() => ~~(Math.random() * 2) * 90)
                 .font('Muli')
                 .fontSize(d => d.size)
@@ -149,7 +149,7 @@
                     .style('background', 'transparent');
 
                 const wordGroup = svg.append('g')
-                    .attr('transform', `translate(${width/2},${height/2})`);
+                    .attr('transform', `translate(${width/2},${height/2}) scale(0.97)`);
 
                 wordGroup.selectAll('text')
                     .data(words)
