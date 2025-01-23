@@ -19,7 +19,8 @@
             background: transparent;
         }
         #wordcloud {
-            width: 800px;
+            width: 100%;
+            max-width: 800px;
             height: 600px;
             margin: 20px auto;
             background: transparent;
@@ -69,6 +70,31 @@
         }
         #wordCount {
             width: 150px;
+        }
+        
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            #wordcloud {
+                height: 400px;  /* Smaller height for mobile */
+            }
+            
+            .controls {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            select, .slider-container {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            h1 {
+                font-size: 1.5em;
+                margin-bottom: 15px;
+            }
         }
     </style>
 </head>
