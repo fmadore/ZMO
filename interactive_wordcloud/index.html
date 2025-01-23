@@ -17,15 +17,11 @@
             padding: 20px;
             text-align: center;
             background: transparent;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
         #wordcloud {
-            width: 100%;
-            flex: 1;
-            min-height: 400px;
-            margin: 0 auto;
+            width: 800px;
+            height: 600px;
+            margin: 20px auto;
             background: transparent;
         }
         .word {
@@ -35,8 +31,8 @@
         #tooltip {
             position: absolute;
             text-align: center;
-            padding: 0.5rem;
-            font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+            padding: 8px;
+            font: 12px 'Muli', sans-serif;
             background: rgba(0, 0, 0, 0.8);
             color: white;
             border: 0px;
@@ -46,25 +42,21 @@
             transition: all 0.2s ease;
         }
         h1 {
-            font-size: clamp(1.2rem, 4vw, 2rem);
-            margin: 0.5rem 0;
-            padding: 0 1rem;
             color: #2c3e50;
             text-align: center;
+            margin-bottom: 20px;
             font-weight: 500;
         }
         .controls {
-            padding: 0.5rem;
+            margin: 20px 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
+            gap: 20px;
         }
         select {
-            font-size: clamp(0.8rem, 2vw, 1rem);
-            padding: 0.3rem 0.6rem;
-            max-width: 90vw;
+            padding: 8px 16px;
+            font-size: 16px;
             border: 1px solid #2c3e50;
             border-radius: 6px;
             background-color: white;
@@ -73,23 +65,10 @@
         .slider-container {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: clamp(0.8rem, 2vw, 1rem);
+            gap: 10px;
         }
         #wordCount {
-            width: clamp(100px, 20vw, 150px);
-        }
-        @media (max-width: 600px) {
-            .controls {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            #wordcloud {
-                min-height: 300px;
-            }
-            body {
-                padding: 10px;
-            }
+            width: 150px;
         }
     </style>
 </head>
@@ -128,8 +107,7 @@
 
         // Function to normalize sizes
         function normalizeSize(size, minSize, maxSize) {
-            const baseSize = Math.min(window.innerWidth, window.innerHeight) / 60;
-            return baseSize + (size - minSize) * (baseSize * 3) / (maxSize - minSize);
+            return 10 + (size - minSize) * (90) / (maxSize - minSize);
         }
         
         // Function to update the word cloud
@@ -156,11 +134,11 @@
             const layout = d3.layout.cloud()
                 .size([width, height])
                 .words(words)
-                .padding(3)
+                .padding(5)
                 .rotate(() => ~~(Math.random() * 2) * 90)
                 .font('Muli')
                 .fontSize(d => d.size)
-                .spiral('rectangular')
+                .spiral('archimedean')
                 .on('end', draw);
 
             function draw(words) {
@@ -216,13 +194,6 @@
             }
 
             layout.start();
-
-            // Add window resize handler
-            window.addEventListener('resize', debounce(() => {
-                if (currentWords.length > 0) {
-                    updateWordCloud(currentWords);
-                }
-            }, 250));
         }
 
         // Load initial data (combined)
@@ -243,19 +214,6 @@
                 updateWordCloud(words.slice(0, wordCountSlider.value));
             });
         });
-
-        // Debounce function to prevent too many resize updates
-        function debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        }
     </script>
 </body>
 </html> 
