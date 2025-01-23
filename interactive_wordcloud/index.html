@@ -139,8 +139,23 @@
         // Function to update the word cloud
         function updateWordCloud(words) {
             currentWords = words;
-            const width = document.getElementById('wordcloud').clientWidth;
-            const height = document.getElementById('wordcloud').clientHeight;
+            const container = document.getElementById('wordcloud');
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+            
+            // Adjust font sizes for mobile
+            function getMinFontSize() {
+                return window.innerWidth <= 768 ? 8 : 10;  // Smaller minimum font size on mobile
+            }
+            
+            function getMaxFontSize() {
+                return window.innerWidth <= 768 ? 40 : 90;  // Smaller maximum font size on mobile
+            }
+            
+            // Update normalize size function
+            function normalizeSize(size, minSize, maxSize) {
+                return getMinFontSize() + (size - minSize) * (getMaxFontSize() - getMinFontSize()) / (maxSize - minSize);
+            }
 
             // Clear existing word cloud
             d3.select('#wordcloud').select('svg').remove();
