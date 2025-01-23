@@ -1,23 +1,23 @@
 [
   {
     "text": "intellectual",
-    "size": 29
+    "size": 32
   },
   {
     "text": "religious",
     "size": 28
   },
   {
-    "text": "context",
-    "size": 18
+    "text": "muslim",
+    "size": 22
   },
   {
-    "text": "muslim",
-    "size": 16
+    "text": "context",
+    "size": 20
   },
   {
     "text": "islamic",
-    "size": 16
+    "size": 18
   },
   {
     "text": "religion",
@@ -29,6 +29,10 @@
   },
   {
     "text": "knowledge",
+    "size": 13
+  },
+  {
+    "text": "new",
     "size": 13
   },
   {
@@ -48,7 +52,15 @@
     "size": 11
   },
   {
+    "text": "way",
+    "size": 11
+  },
+  {
     "text": "region",
+    "size": 11
+  },
+  {
+    "text": "theological",
     "size": 11
   },
   {
@@ -56,7 +68,7 @@
     "size": 11
   },
   {
-    "text": "way",
+    "text": "tradition",
     "size": 10
   },
   {
@@ -64,11 +76,15 @@
     "size": 10
   },
   {
-    "text": "different",
-    "size": 9
+    "text": "discourse",
+    "size": 10
   },
   {
-    "text": "tradition",
+    "text": "idea",
+    "size": 10
+  },
+  {
+    "text": "different",
     "size": 9
   },
   {
@@ -76,11 +92,7 @@
     "size": 9
   },
   {
-    "text": "new",
-    "size": 9
-  },
-  {
-    "text": "idea",
+    "text": "theology",
     "size": 9
   },
   {
@@ -144,11 +156,15 @@
     "size": 7
   },
   {
+    "text": "seek",
+    "size": 7
+  },
+  {
     "text": "islam",
     "size": 7
   },
   {
-    "text": "discourse",
+    "text": "public",
     "size": 7
   },
   {
@@ -168,6 +184,14 @@
     "size": 6
   },
   {
+    "text": "question",
+    "size": 6
+  },
+  {
+    "text": "individual",
+    "size": 6
+  },
+  {
     "text": "examine",
     "size": 6
   },
@@ -180,15 +204,7 @@
     "size": 6
   },
   {
-    "text": "seek",
-    "size": 6
-  },
-  {
     "text": "investigates",
-    "size": 6
-  },
-  {
-    "text": "theology",
     "size": 6
   },
   {
@@ -204,11 +220,19 @@
     "size": 6
   },
   {
+    "text": "periodical",
+    "size": 6
+  },
+  {
     "text": "concern",
     "size": 5
   },
   {
     "text": "ethnographic",
+    "size": 5
+  },
+  {
+    "text": "approach",
     "size": 5
   },
   {
@@ -221,10 +245,6 @@
   },
   {
     "text": "challenge",
-    "size": 5
-  },
-  {
-    "text": "individual",
     "size": 5
   },
   {
@@ -252,11 +272,15 @@
     "size": 5
   },
   {
+    "text": "thought",
+    "size": 5
+  },
+  {
     "text": "anthropology",
     "size": 5
   },
   {
-    "text": "public",
+    "text": "role",
     "size": 5
   },
   {
@@ -269,6 +293,14 @@
   },
   {
     "text": "campus",
+    "size": 5
+  },
+  {
+    "text": "press",
+    "size": 5
+  },
+  {
+    "text": "tatar",
     "size": 5
   },
   {
@@ -292,11 +324,11 @@
     "size": 4
   },
   {
-    "text": "method",
+    "text": "interest",
     "size": 4
   },
   {
-    "text": "approach",
+    "text": "method",
     "size": 4
   },
   {
@@ -316,15 +348,19 @@
     "size": 4
   },
   {
-    "text": "question",
-    "size": 4
-  },
-  {
     "text": "christian",
     "size": 4
   },
   {
     "text": "living",
+    "size": 4
+  },
+  {
+    "text": "emerged",
+    "size": 4
+  },
+  {
+    "text": "influence",
     "size": 4
   },
   {
@@ -340,10 +376,6 @@
     "size": 4
   },
   {
-    "text": "thought",
-    "size": 4
-  },
-  {
     "text": "modern",
     "size": 4
   },
@@ -356,47 +388,15 @@
     "size": 4
   },
   {
-    "text": "theological",
+    "text": "elite",
+    "size": 4
+  },
+  {
+    "text": "aim",
     "size": 4
   },
   {
     "text": "missionary",
     "size": 4
-  },
-  {
-    "text": "like",
-    "size": 4
-  },
-  {
-    "text": "mean",
-    "size": 4
-  },
-  {
-    "text": "international",
-    "size": 4
-  },
-  {
-    "text": "hassan",
-    "size": 4
-  },
-  {
-    "text": "porcelain",
-    "size": 4
-  },
-  {
-    "text": "virtual",
-    "size": 4
-  },
-  {
-    "text": "everyday",
-    "size": 3
-  },
-  {
-    "text": "diverse",
-    "size": 3
-  },
-  {
-    "text": "often",
-    "size": 3
   }
 ]
