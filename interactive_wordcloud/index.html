@@ -7,8 +7,12 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3-cloud@1.2.5/build/d3.layout.cloud.min.js"></script>
     <style>
+        @font-face {
+            font-family: 'Muli';
+            src: url('muli.ttf') format('truetype');
+        }
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Muli', Arial, sans-serif;
             margin: 0;
             padding: 20px;
             text-align: center;
@@ -28,7 +32,7 @@
             position: absolute;
             text-align: center;
             padding: 8px;
-            font: 12px sans-serif;
+            font: 12px 'Muli', sans-serif;
             background: rgba(0, 0, 0, 0.8);
             color: white;
             border: 0px;
@@ -153,7 +157,7 @@
                     .append('text')
                     .attr('class', 'word')
                     .style('font-size', d => `${d.size}px`)
-                    .style('font-family', 'Arial')
+                    .style('font-family', 'Muli')
                     .style('fill', () => d3.schemeCategory10[~~(Math.random() * 10)])
                     .attr('text-anchor', 'middle')
                     .attr('transform', d => `translate(${[d.x, d.y]})rotate(${d.rotate})`)
