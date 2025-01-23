@@ -12,16 +12,16 @@
     "size": 41
   },
   {
+    "text": "context",
+    "size": 39
+  },
+  {
     "text": "life",
     "size": 39
   },
   {
     "text": "state",
     "size": 38
-  },
-  {
-    "text": "context",
-    "size": 37
   },
   {
     "text": "focus",
@@ -40,6 +40,10 @@
     "size": 35
   },
   {
+    "text": "intellectual",
+    "size": 35
+  },
+  {
     "text": "political",
     "size": 34
   },
@@ -49,10 +53,6 @@
   },
   {
     "text": "soviet",
-    "size": 32
-  },
-  {
-    "text": "intellectual",
     "size": 32
   },
   {
@@ -84,6 +84,14 @@
     "size": 27
   },
   {
+    "text": "muslim",
+    "size": 27
+  },
+  {
+    "text": "role",
+    "size": 25
+  },
+  {
     "text": "process",
     "size": 25
   },
@@ -100,8 +108,8 @@
     "size": 24
   },
   {
-    "text": "role",
-    "size": 23
+    "text": "new",
+    "size": 24
   },
   {
     "text": "historical",
@@ -113,30 +121,34 @@
   },
   {
     "text": "way",
-    "size": 21
-  },
-  {
-    "text": "muslim",
-    "size": 21
-  },
-  {
-    "text": "new",
-    "size": 20
+    "size": 22
   },
   {
     "text": "migrant",
     "size": 20
   },
   {
-    "text": "global",
+    "text": "question",
     "size": 19
   },
   {
     "text": "aim",
+    "size": 19
+  },
+  {
+    "text": "global",
+    "size": 19
+  },
+  {
+    "text": "idea",
     "size": 18
   },
   {
     "text": "woman",
+    "size": 18
+  },
+  {
+    "text": "islamic",
     "size": 18
   },
   {
@@ -148,15 +160,11 @@
     "size": 17
   },
   {
-    "text": "idea",
-    "size": 17
-  },
-  {
-    "text": "question",
-    "size": 17
-  },
-  {
     "text": "relation",
+    "size": 17
+  },
+  {
+    "text": "russian",
     "size": 17
   },
   {
@@ -169,6 +177,10 @@
   },
   {
     "text": "justice",
+    "size": 16
+  },
+  {
+    "text": "explores",
     "size": 16
   },
   {
@@ -200,11 +212,11 @@
     "size": 16
   },
   {
-    "text": "islamic",
-    "size": 16
+    "text": "particular",
+    "size": 15
   },
   {
-    "text": "particular",
+    "text": "seek",
     "size": 15
   },
   {
@@ -216,7 +228,7 @@
     "size": 15
   },
   {
-    "text": "explores",
+    "text": "discourse",
     "size": 15
   },
   {
@@ -232,19 +244,15 @@
     "size": 15
   },
   {
-    "text": "russian",
-    "size": 15
-  },
-  {
     "text": "africa",
     "size": 15
   },
   {
-    "text": "seek",
+    "text": "explore",
     "size": 14
   },
   {
-    "text": "explore",
+    "text": "approach",
     "size": 14
   },
   {
@@ -260,11 +268,19 @@
     "size": 14
   },
   {
+    "text": "transformation",
+    "size": 13
+  },
+  {
     "text": "relationship",
     "size": 13
   },
   {
-    "text": "approach",
+    "text": "individual",
+    "size": 13
+  },
+  {
+    "text": "early",
     "size": 13
   },
   {
@@ -292,6 +308,10 @@
     "size": 13
   },
   {
+    "text": "public",
+    "size": 13
+  },
+  {
     "text": "solidarity",
     "size": 13
   },
@@ -304,15 +324,19 @@
     "size": 13
   },
   {
+    "text": "tatar",
+    "size": 13
+  },
+  {
     "text": "arab",
     "size": 13
   },
   {
-    "text": "challenge",
+    "text": "examines",
     "size": 12
   },
   {
-    "text": "transformation",
+    "text": "challenge",
     "size": 12
   },
   {
@@ -320,15 +344,11 @@
     "size": 12
   },
   {
-    "text": "discourse",
-    "size": 12
-  },
-  {
     "text": "project",
     "size": 12
   },
   {
-    "text": "individual",
+    "text": "late",
     "size": 12
   },
   {
@@ -340,11 +360,11 @@
     "size": 12
   },
   {
-    "text": "early",
+    "text": "dynamic",
     "size": 12
   },
   {
-    "text": "dynamic",
+    "text": "period",
     "size": 12
   },
   {
@@ -378,25 +398,5 @@
   {
     "text": "people",
     "size": 12
-  },
-  {
-    "text": "home",
-    "size": 12
-  },
-  {
-    "text": "unit",
-    "size": 12
-  },
-  {
-    "text": "examines",
-    "size": 11
-  },
-  {
-    "text": "order",
-    "size": 11
-  },
-  {
-    "text": "late",
-    "size": 11
   }
 ]
