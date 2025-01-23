@@ -14,16 +14,17 @@
         body {
             font-family: 'Muli', Arial, sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 20px;
             text-align: center;
             background: transparent;
-            overflow: hidden;
-            width: 100%;
-            height: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         #wordcloud {
             width: 100%;
-            aspect-ratio: 16/9;
+            flex: 1;
+            min-height: 400px;
             margin: 0 auto;
             background: transparent;
         }
@@ -84,7 +85,10 @@
                 gap: 0.5rem;
             }
             #wordcloud {
-                aspect-ratio: 4/3;
+                min-height: 300px;
+            }
+            body {
+                padding: 10px;
             }
         }
     </style>
@@ -124,8 +128,8 @@
 
         // Function to normalize sizes
         function normalizeSize(size, minSize, maxSize) {
-            const baseSize = Math.min(window.innerWidth, window.innerHeight) / 50;
-            return baseSize + (size - minSize) * (baseSize * 4) / (maxSize - minSize);
+            const baseSize = Math.min(window.innerWidth, window.innerHeight) / 60;
+            return baseSize + (size - minSize) * (baseSize * 3) / (maxSize - minSize);
         }
         
         // Function to update the word cloud
@@ -152,11 +156,11 @@
             const layout = d3.layout.cloud()
                 .size([width, height])
                 .words(words)
-                .padding(5)
+                .padding(3)
                 .rotate(() => ~~(Math.random() * 2) * 90)
                 .font('Muli')
                 .fontSize(d => d.size)
-                .spiral('archimedean')
+                .spiral('rectangular')
                 .on('end', draw);
 
             function draw(words) {
