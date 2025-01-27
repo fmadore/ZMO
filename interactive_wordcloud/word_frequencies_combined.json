@@ -1,7 +1,7 @@
 [
   {
     "text": "social",
-    "size": 53
+    "size": 54
   },
   {
     "text": "history",
@@ -24,7 +24,15 @@
     "size": 38
   },
   {
+    "text": "intellectual",
+    "size": 38
+  },
+  {
     "text": "focus",
+    "size": 37
+  },
+  {
+    "text": "religious",
     "size": 37
   },
   {
@@ -33,15 +41,11 @@
   },
   {
     "text": "time",
-    "size": 35
+    "size": 36
   },
   {
-    "text": "religious",
-    "size": 35
-  },
-  {
-    "text": "intellectual",
-    "size": 35
+    "text": "muslim",
+    "size": 36
   },
   {
     "text": "political",
@@ -52,23 +56,27 @@
     "size": 33
   },
   {
+    "text": "different",
+    "size": 32
+  },
+  {
     "text": "soviet",
     "size": 32
   },
   {
-    "text": "different",
-    "size": 31
+    "text": "knowledge",
+    "size": 30
   },
   {
     "text": "culture",
     "size": 29
   },
   {
-    "text": "knowledge",
-    "size": 29
+    "text": "network",
+    "size": 28
   },
   {
-    "text": "network",
+    "text": "role",
     "size": 28
   },
   {
@@ -82,14 +90,6 @@
   {
     "text": "asia",
     "size": 27
-  },
-  {
-    "text": "muslim",
-    "size": 27
-  },
-  {
-    "text": "role",
-    "size": 25
   },
   {
     "text": "process",
@@ -124,8 +124,16 @@
     "size": 22
   },
   {
+    "text": "islamic",
+    "size": 21
+  },
+  {
     "text": "migrant",
     "size": 20
+  },
+  {
+    "text": "group",
+    "size": 19
   },
   {
     "text": "question",
@@ -140,7 +148,15 @@
     "size": 19
   },
   {
+    "text": "society",
+    "size": 18
+  },
+  {
     "text": "idea",
+    "size": 18
+  },
+  {
+    "text": "relation",
     "size": 18
   },
   {
@@ -148,19 +164,11 @@
     "size": 18
   },
   {
-    "text": "islamic",
-    "size": 18
-  },
-  {
-    "text": "society",
+    "text": "movement",
     "size": 17
   },
   {
-    "text": "group",
-    "size": 17
-  },
-  {
-    "text": "relation",
+    "text": "modern",
     "size": 17
   },
   {
@@ -168,7 +176,11 @@
     "size": 17
   },
   {
-    "text": "movement",
+    "text": "world",
+    "size": 17
+  },
+  {
+    "text": "form",
     "size": 16
   },
   {
@@ -192,11 +204,11 @@
     "size": 16
   },
   {
-    "text": "modern",
+    "text": "indian",
     "size": 16
   },
   {
-    "text": "indian",
+    "text": "cultural",
     "size": 16
   },
   {
@@ -205,10 +217,6 @@
   },
   {
     "text": "religion",
-    "size": 16
-  },
-  {
-    "text": "world",
     "size": 16
   },
   {
@@ -224,10 +232,6 @@
     "size": 15
   },
   {
-    "text": "form",
-    "size": 15
-  },
-  {
     "text": "discourse",
     "size": 15
   },
@@ -237,10 +241,6 @@
   },
   {
     "text": "investigates",
-    "size": 15
-  },
-  {
-    "text": "cultural",
     "size": 15
   },
   {
@@ -265,6 +265,10 @@
   },
   {
     "text": "war",
+    "size": 14
+  },
+  {
+    "text": "education",
     "size": 14
   },
   {
@@ -320,10 +324,6 @@
     "size": 13
   },
   {
-    "text": "education",
-    "size": 13
-  },
-  {
     "text": "tatar",
     "size": 13
   },
@@ -337,6 +337,10 @@
   },
   {
     "text": "challenge",
+    "size": 12
+  },
+  {
+    "text": "order",
     "size": 12
   },
   {
@@ -357,6 +361,10 @@
   },
   {
     "text": "mean",
+    "size": 12
+  },
+  {
+    "text": "school",
     "size": 12
   },
   {
@@ -389,14 +397,6 @@
   },
   {
     "text": "radio",
-    "size": 12
-  },
-  {
-    "text": "trajectory",
-    "size": 12
-  },
-  {
-    "text": "people",
     "size": 12
   }
 ]
