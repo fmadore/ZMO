@@ -1,34 +1,38 @@
 [
   {
     "text": "intellectual",
-    "size": 32
-  },
-  {
-    "text": "religious",
-    "size": 28
+    "size": 35
   },
   {
     "text": "muslim",
-    "size": 22
+    "size": 31
+  },
+  {
+    "text": "religious",
+    "size": 30
+  },
+  {
+    "text": "islamic",
+    "size": 21
   },
   {
     "text": "context",
     "size": 20
   },
   {
-    "text": "islamic",
-    "size": 18
-  },
-  {
     "text": "religion",
     "size": 15
+  },
+  {
+    "text": "knowledge",
+    "size": 14
   },
   {
     "text": "practice",
     "size": 13
   },
   {
-    "text": "knowledge",
+    "text": "social",
     "size": 13
   },
   {
@@ -44,12 +48,8 @@
     "size": 12
   },
   {
-    "text": "social",
-    "size": 12
-  },
-  {
     "text": "world",
-    "size": 11
+    "size": 12
   },
   {
     "text": "way",
@@ -68,6 +68,10 @@
     "size": 11
   },
   {
+    "text": "different",
+    "size": 10
+  },
+  {
     "text": "tradition",
     "size": 10
   },
@@ -84,7 +88,15 @@
     "size": 10
   },
   {
-    "text": "different",
+    "text": "society",
+    "size": 9
+  },
+  {
+    "text": "secular",
+    "size": 9
+  },
+  {
+    "text": "education",
     "size": 9
   },
   {
@@ -94,14 +106,6 @@
   {
     "text": "theology",
     "size": 9
-  },
-  {
-    "text": "society",
-    "size": 8
-  },
-  {
-    "text": "education",
-    "size": 8
   },
   {
     "text": "religiosity",
@@ -116,7 +120,19 @@
     "size": 8
   },
   {
+    "text": "school",
+    "size": 8
+  },
+  {
     "text": "africa",
+    "size": 8
+  },
+  {
+    "text": "role",
+    "size": 8
+  },
+  {
+    "text": "elite",
     "size": 8
   },
   {
@@ -140,7 +156,7 @@
     "size": 7
   },
   {
-    "text": "secular",
+    "text": "time",
     "size": 7
   },
   {
@@ -180,7 +196,7 @@
     "size": 6
   },
   {
-    "text": "time",
+    "text": "traditional",
     "size": 6
   },
   {
@@ -196,7 +212,15 @@
     "size": 6
   },
   {
+    "text": "form",
+    "size": 6
+  },
+  {
     "text": "political",
+    "size": 6
+  },
+  {
+    "text": "system",
     "size": 6
   },
   {
@@ -208,11 +232,19 @@
     "size": 6
   },
   {
+    "text": "western",
+    "size": 6
+  },
+  {
     "text": "art",
     "size": 6
   },
   {
     "text": "student",
+    "size": 6
+  },
+  {
+    "text": "university",
     "size": 6
   },
   {
@@ -222,6 +254,10 @@
   {
     "text": "periodical",
     "size": 6
+  },
+  {
+    "text": "relation",
+    "size": 5
   },
   {
     "text": "concern",
@@ -252,10 +288,6 @@
     "size": 5
   },
   {
-    "text": "form",
-    "size": 5
-  },
-  {
     "text": "engagement",
     "size": 5
   },
@@ -268,7 +300,11 @@
     "size": 5
   },
   {
-    "text": "school",
+    "text": "influence",
+    "size": 5
+  },
+  {
+    "text": "concept",
     "size": 5
   },
   {
@@ -276,19 +312,15 @@
     "size": 5
   },
   {
+    "text": "modern",
+    "size": 5
+  },
+  {
     "text": "anthropology",
     "size": 5
   },
   {
-    "text": "role",
-    "size": 5
-  },
-  {
     "text": "egyptian",
-    "size": 5
-  },
-  {
-    "text": "university",
     "size": 5
   },
   {
@@ -304,6 +336,10 @@
     "size": 5
   },
   {
+    "text": "hybrid",
+    "size": 5
+  },
+  {
     "text": "focus",
     "size": 4
   },
@@ -312,15 +348,15 @@
     "size": 4
   },
   {
+    "text": "reflect",
+    "size": 4
+  },
+  {
     "text": "well",
     "size": 4
   },
   {
     "text": "regional",
-    "size": 4
-  },
-  {
-    "text": "relation",
     "size": 4
   },
   {
@@ -348,6 +384,10 @@
     "size": 4
   },
   {
+    "text": "view",
+    "size": 4
+  },
+  {
     "text": "christian",
     "size": 4
   },
@@ -357,46 +397,6 @@
   },
   {
     "text": "emerged",
-    "size": 4
-  },
-  {
-    "text": "influence",
-    "size": 4
-  },
-  {
-    "text": "europe",
-    "size": 4
-  },
-  {
-    "text": "concept",
-    "size": 4
-  },
-  {
-    "text": "system",
-    "size": 4
-  },
-  {
-    "text": "modern",
-    "size": 4
-  },
-  {
-    "text": "francophone",
-    "size": 4
-  },
-  {
-    "text": "computational",
-    "size": 4
-  },
-  {
-    "text": "elite",
-    "size": 4
-  },
-  {
-    "text": "aim",
-    "size": 4
-  },
-  {
-    "text": "missionary",
     "size": 4
   }
 ]
