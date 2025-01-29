@@ -1,15 +1,15 @@
 [
   {
+    "text": "religious",
+    "size": 37
+  },
+  {
     "text": "intellectual",
     "size": 35
   },
   {
     "text": "muslim",
-    "size": 31
-  },
-  {
-    "text": "religious",
-    "size": 30
+    "size": 32
   },
   {
     "text": "islamic",
@@ -28,15 +28,15 @@
     "size": 14
   },
   {
+    "text": "new",
+    "size": 14
+  },
+  {
     "text": "practice",
     "size": 13
   },
   {
     "text": "social",
-    "size": 13
-  },
-  {
-    "text": "new",
     "size": 13
   },
   {
@@ -49,6 +49,10 @@
   },
   {
     "text": "world",
+    "size": 12
+  },
+  {
+    "text": "actor",
     "size": 12
   },
   {
@@ -100,10 +104,6 @@
     "size": 9
   },
   {
-    "text": "actor",
-    "size": 9
-  },
-  {
     "text": "theology",
     "size": 9
   },
@@ -136,6 +136,10 @@
     "size": 8
   },
   {
+    "text": "public",
+    "size": 8
+  },
+  {
     "text": "heshmat",
     "size": 8
   },
@@ -164,7 +168,23 @@
     "size": 7
   },
   {
+    "text": "question",
+    "size": 7
+  },
+  {
+    "text": "individual",
+    "size": 7
+  },
+  {
     "text": "state",
+    "size": 7
+  },
+  {
+    "text": "examine",
+    "size": 7
+  },
+  {
+    "text": "political",
     "size": 7
   },
   {
@@ -177,10 +197,6 @@
   },
   {
     "text": "islam",
-    "size": 7
-  },
-  {
-    "text": "public",
     "size": 7
   },
   {
@@ -200,23 +216,7 @@
     "size": 6
   },
   {
-    "text": "question",
-    "size": 6
-  },
-  {
-    "text": "individual",
-    "size": 6
-  },
-  {
-    "text": "examine",
-    "size": 6
-  },
-  {
     "text": "form",
-    "size": 6
-  },
-  {
-    "text": "political",
     "size": 6
   },
   {
@@ -256,6 +256,10 @@
     "size": 6
   },
   {
+    "text": "niger",
+    "size": 6
+  },
+  {
     "text": "relation",
     "size": 5
   },
@@ -288,6 +292,10 @@
     "size": 5
   },
   {
+    "text": "christian",
+    "size": 5
+  },
+  {
     "text": "engagement",
     "size": 5
   },
@@ -317,6 +325,14 @@
   },
   {
     "text": "anthropology",
+    "size": 5
+  },
+  {
+    "text": "aim",
+    "size": 5
+  },
+  {
+    "text": "movement",
     "size": 5
   },
   {
@@ -360,6 +376,10 @@
     "size": 4
   },
   {
+    "text": "tension",
+    "size": 4
+  },
+  {
     "text": "interest",
     "size": 4
   },
@@ -377,26 +397,6 @@
   },
   {
     "text": "use",
-    "size": 4
-  },
-  {
-    "text": "digital",
-    "size": 4
-  },
-  {
-    "text": "view",
-    "size": 4
-  },
-  {
-    "text": "christian",
-    "size": 4
-  },
-  {
-    "text": "living",
-    "size": 4
-  },
-  {
-    "text": "emerged",
     "size": 4
   }
 ]
