@@ -8,6 +8,10 @@
     "size": 46
   },
   {
+    "text": "religious",
+    "size": 44
+  },
+  {
     "text": "local",
     "size": 41
   },
@@ -32,7 +36,7 @@
     "size": 37
   },
   {
-    "text": "religious",
+    "text": "muslim",
     "size": 37
   },
   {
@@ -44,12 +48,8 @@
     "size": 36
   },
   {
-    "text": "muslim",
-    "size": 36
-  },
-  {
     "text": "political",
-    "size": 34
+    "size": 35
   },
   {
     "text": "south",
@@ -62,6 +62,10 @@
   {
     "text": "soviet",
     "size": 32
+  },
+  {
+    "text": "actor",
+    "size": 31
   },
   {
     "text": "knowledge",
@@ -80,10 +84,6 @@
     "size": 28
   },
   {
-    "text": "actor",
-    "size": 28
-  },
-  {
     "text": "region",
     "size": 28
   },
@@ -93,6 +93,10 @@
   },
   {
     "text": "process",
+    "size": 25
+  },
+  {
+    "text": "new",
     "size": 25
   },
   {
@@ -108,15 +112,11 @@
     "size": 24
   },
   {
-    "text": "new",
-    "size": 24
+    "text": "central",
+    "size": 23
   },
   {
     "text": "historical",
-    "size": 22
-  },
-  {
-    "text": "central",
     "size": 22
   },
   {
@@ -128,19 +128,23 @@
     "size": 21
   },
   {
+    "text": "group",
+    "size": 20
+  },
+  {
+    "text": "question",
+    "size": 20
+  },
+  {
+    "text": "aim",
+    "size": 20
+  },
+  {
     "text": "migrant",
     "size": 20
   },
   {
-    "text": "group",
-    "size": 19
-  },
-  {
-    "text": "question",
-    "size": 19
-  },
-  {
-    "text": "aim",
+    "text": "movement",
     "size": 19
   },
   {
@@ -164,7 +168,7 @@
     "size": 18
   },
   {
-    "text": "movement",
+    "text": "national",
     "size": 17
   },
   {
@@ -197,10 +201,6 @@
   },
   {
     "text": "change",
-    "size": 16
-  },
-  {
-    "text": "national",
     "size": 16
   },
   {
@@ -256,6 +256,10 @@
     "size": 14
   },
   {
+    "text": "individual",
+    "size": 14
+  },
+  {
     "text": "part",
     "size": 14
   },
@@ -268,6 +272,10 @@
     "size": 14
   },
   {
+    "text": "public",
+    "size": 14
+  },
+  {
     "text": "education",
     "size": 14
   },
@@ -277,10 +285,6 @@
   },
   {
     "text": "relationship",
-    "size": 13
-  },
-  {
-    "text": "individual",
     "size": 13
   },
   {
@@ -309,10 +313,6 @@
   },
   {
     "text": "berlin",
-    "size": 13
-  },
-  {
-    "text": "public",
     "size": 13
   },
   {
@@ -345,6 +345,10 @@
   },
   {
     "text": "memory",
+    "size": 12
+  },
+  {
+    "text": "first",
     "size": 12
   },
   {
@@ -393,10 +397,6 @@
   },
   {
     "text": "everyday",
-    "size": 12
-  },
-  {
-    "text": "radio",
     "size": 12
   }
 ]
