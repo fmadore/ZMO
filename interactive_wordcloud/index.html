@@ -156,6 +156,41 @@
                 width: 150px;
             }
         }
+        
+        /* Fullscreen button styles */
+        .fullscreen-btn {
+            padding: 8px 16px;
+            font-size: 16px;
+            background-color: #193d75;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .fullscreen-btn:hover {
+            background-color: #122c54;
+        }
+        
+        /* When in fullscreen */
+        :fullscreen #wordcloud-container {
+            max-width: 100%;
+            max-height: 100%;
+            margin: 0;
+        }
+        
+        :-webkit-full-screen #wordcloud-container {
+            max-width: 100%;
+            max-height: 100%;
+            margin: 0;
+        }
+        
+        :-moz-full-screen #wordcloud-container {
+            max-width: 100%;
+            max-height: 100%;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -172,6 +207,9 @@
             <input type="range" id="wordCount" min="10" max="100" value="75" aria-label="Number of words to display">
             <span id="wordCountValue">75</span>
         </div>
+        <button class="fullscreen-btn" id="fullscreenBtn">
+            Fullscreen
+        </button>
     </div>
     <div id="wordcloud-container">
         <div id="wordcloud"></div>
@@ -334,6 +372,45 @@
                 // Reinitialize slider after data changes
                 initializeSlider();
             });
+        });
+
+        // Add fullscreen functionality
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        const container = document.getElementById('wordcloud-container');
+        
+        fullscreenBtn.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                fullscreenBtn.textContent = 'Exit Fullscreen';
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                fullscreenBtn.textContent = 'Fullscreen';
+            }
+        });
+        
+        // Update button text when exiting fullscreen via Esc key
+        document.addEventListener('fullscreenchange', () => {
+            if (!document.fullscreenElement) {
+                fullscreenBtn.textContent = 'Fullscreen';
+            }
+        });
+        
+        document.addEventListener('webkitfullscreenchange', () => {
+            if (!document.webkitFullscreenElement) {
+                fullscreenBtn.textContent = 'Fullscreen';
+            }
         });
     </script>
 </body>
