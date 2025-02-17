@@ -28,11 +28,11 @@ export class WordCloudDataManager {
         return this.service.getWordCountLimits();
     }
 
-    getDefaultCountry() {
-        return this.service.getDefaultCountry();
+    getDefaultUnit() {
+        return this.service.getDefaultUnit();
     }
 
-    getAvailableCountries() {
-        return this.service.getAvailableCountries();
+    getAvailableUnits() {
+        return this.service.getAvailableUnits();
     }
 } 

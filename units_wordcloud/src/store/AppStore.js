@@ -69,13 +69,13 @@ export class AppStore {
     }
 
     // Action creators
-    async updateWordCloud(country, wordCount) {
+    async updateWordCloud(unit, wordCount) {
         try {
             this.setState({ isLoading: true, error: null });
             
             // Update state immediately for UI responsiveness
             this.setState({
-                selectedUnit: country,
+                selectedUnit: unit,
                 wordCount: wordCount
             });
 
@@ -83,7 +83,7 @@ export class AppStore {
             await this.eventBus.emit(WORDCLOUD_EVENTS.LOADING, { isLoading: true });
             
             // Load and process data using the service
-            const words = await this.wordCloudService.loadData(country, wordCount);
+            const words = await this.wordCloudService.loadData(unit, wordCount);
             
             // Update state with new data
             this.setState({
@@ -129,8 +129,8 @@ export class AppStore {
     }
 
     // Helper methods
-    processWordData(response, country, wordCount) {
-        const words = country === 'combined' ? 
+    processWordData(response, unit, wordCount) {
+        const words = unit === 'combined' ? 
             this.processCombinedData(response) : 
             response;
         return this.processWords(words, wordCount);
@@ -138,17 +138,17 @@ export class AppStore {
 
     processCombinedData(data) {
         const wordMap = new Map();
-        Object.entries(data).forEach(([countryName, countryWords]) => {
-            countryWords.forEach(word => {
+        Object.entries(data).forEach(([unitName, unitWords]) => {
+            unitWords.forEach(word => {
                 if (wordMap.has(word.text)) {
                     const existingWord = wordMap.get(word.text);
                     existingWord.size += word.size;
-                    existingWord.countries.push(countryName);
+                    existingWord.units.push(unitName);
                 } else {
                     wordMap.set(word.text, {
                         text: word.text,
                         size: word.size,
-                        countries: [countryName]
+                        units: [unitName]
                     });
                 }
             });

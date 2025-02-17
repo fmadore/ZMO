@@ -69,8 +69,4 @@ export class WordCloudService {
             max: this.config.get('data.maxWords')
         };
     }
-
-    getAvailableCountries() {
-        return this.config.getCountries();
-    }
 } 
