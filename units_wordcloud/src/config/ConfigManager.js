@@ -9,10 +9,10 @@ export class ConfigManager {
         this.config = {
             wordcloud: {
                 dimensions: {
-                    width: 800,
-                    height: 600,
-                    minHeight: 400,
-                    maxWidth: 1200
+                    width: 1000,
+                    height: 800,
+                    minHeight: 500,
+                    maxWidth: 1400
                 },
                 font: {
                     // Primary and fallback fonts
