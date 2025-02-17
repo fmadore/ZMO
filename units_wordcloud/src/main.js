@@ -6,6 +6,14 @@ import { ErrorManager } from './utils/ErrorManager.js';
 import { ConfigManager } from './config/ConfigManager.js';
 import { EventBus } from './events/EventBus.js';
 
+// Function to get URL parameters
+function getUrlParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+        unit: params.get('unit') || null
+    };
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // Create core dependencies
     const config = new ConfigManager();
@@ -46,10 +54,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Initial update
+        // Get URL parameters
+        const { unit } = getUrlParams();
+        
+        // Initial update with either URL parameter or default state
         const initialState = store.getState();
         store.updateWordCloud(
-            initialState.selectedCountry,
+            unit || initialState.selectedCountry,
             initialState.wordCount
         ).catch(error => {
             console.error('Failed to perform initial word cloud update:', error);
