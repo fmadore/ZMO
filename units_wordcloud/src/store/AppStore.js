@@ -8,13 +8,14 @@ import { ValidationMiddleware } from '../events/middleware/ValidationMiddleware.
 export class AppStore {
     static instance = null;
     
-    constructor() {
+    constructor({ config, eventBus, errorManager }) {
         if (AppStore.instance) {
             return AppStore.instance;
         }
         
-        this.config = ConfigManager.getInstance();
-        this.eventBus = EventBus.getInstance();
+        this.config = config;
+        this.eventBus = eventBus;
+        this.errorManager = errorManager;
         this.wordCloudService = WordCloudService.getInstance();
         
         // Setup event bus middlewares
@@ -23,7 +24,7 @@ export class AppStore {
             .use(ValidationMiddleware);
         
         this.state = {
-            selectedCountry: this.wordCloudService.getDefaultCountry(),
+            selectedUnit: this.wordCloudService.getDefaultUnit(),
             wordCount: this.wordCloudService.getDefaultWordCount(),
             currentWords: [],
             dimensions: {
@@ -74,7 +75,7 @@ export class AppStore {
             
             // Update state immediately for UI responsiveness
             this.setState({
-                selectedCountry: country,
+                selectedUnit: country,
                 wordCount: wordCount
             });
 

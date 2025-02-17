@@ -10,7 +10,8 @@ import { EventBus } from './events/EventBus.js';
 function getUrlParams() {
     const params = new URLSearchParams(window.location.search);
     return {
-        unit: params.get('unit') || null
+        unit: params.get('unit') || null,
+        count: params.get('count') ? parseInt(params.get('count')) : null
     };
 }
 
@@ -55,13 +56,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Get URL parameters
-        const { unit } = getUrlParams();
+        const { unit, count } = getUrlParams();
         
         // Initial update with either URL parameter or default state
         const initialState = store.getState();
         store.updateWordCloud(
-            unit || initialState.selectedCountry,
-            initialState.wordCount
+            unit || initialState.selectedUnit,
+            count || initialState.wordCount
         ).catch(error => {
             console.error('Failed to perform initial word cloud update:', error);
         });
