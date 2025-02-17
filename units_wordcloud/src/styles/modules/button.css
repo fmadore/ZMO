@@ -1,0 +1,45 @@
+/* Button Module */
+.button-container {
+    display: flex;
+    align-items: center;
+}
+
+.save-button {
+    width: 100%;
+    padding: 8px 16px;
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    font-family: var(--font-base);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.save-button:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px var(--color-primary-alpha);
+}
+
+.save-button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px var(--color-primary-alpha);
+}
+
+.save-button .save-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.save-button svg {
+    width: 16px;
+    height: 16px;
+}
+
+.save-button .button-text {
+    font-weight: var(--font-weight-medium);
+} 

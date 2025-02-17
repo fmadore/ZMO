@@ -1,0 +1,204 @@
+/* Responsive Module */
+@media (max-width: 900px) {
+    :root {
+        --word-list-width: 100%;
+    }
+
+    /* Menu Layout */
+    .menu-wrapper {
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 6px;
+    }
+    
+    .input-container {
+        flex: 1 1 calc(50% - 12px);
+    }
+
+    /* Content Layout */
+    .content-container {
+        flex-direction: column;
+        position: relative;
+        height: calc(100vh - 70px);
+        overflow: hidden;
+    }
+
+    /* Word Cloud */
+    .wordcloud-container {
+        flex: 1;
+        min-height: 0;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    #wordcloud {
+        height: 100%;
+        width: 100%;
+        min-height: unset;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+    }
+
+    /* Hide word list on mobile */
+    .word-list-container {
+        display: none !important;
+    }
+
+    /* Word List */
+    .word-list-container {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        height: 200px;
+        min-height: 200px;
+        max-height: 200px;
+        border-left: none;
+        border-top: 1px solid #e0e0e0;
+        position: relative;
+        flex: 0 0 200px; /* Fixed height, prevent flex growing/shrinking */
+        overflow: hidden;
+    }
+
+    .word-list {
+        flex: 1 1 auto;
+        overflow-y: scroll; /* Always show scrollbar to prevent layout shifts */
+        overflow-x: hidden;
+        height: 0; /* Let flex control the height */
+        min-height: 0; /* Allow container to shrink */
+    }
+
+    .word-list-header {
+        padding: 8px 16px;
+        position: sticky;
+        top: 0;
+        background: #fff;
+        z-index: 2;
+    }
+
+    .word-list-header h2 {
+        font-size: var(--font-size-base);
+    }
+
+    .word-list-item {
+        padding: 6px 12px;
+    }
+
+    .word-list-pagination {
+        padding: 8px;
+        position: sticky;
+        bottom: 0;
+        background: #fff;
+        z-index: 2;
+    }
+
+    .word-frequency {
+        min-width: 60px;
+        text-align: right;
+    }
+
+    /* Fix for iframe embedding */
+    body {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+}
+
+@media (max-width: 600px) {
+    /* Menu Layout */
+    .menu-wrapper {
+        flex-direction: column;
+        gap: 6px;
+        padding: 6px;
+        margin: 2px auto;
+    }
+    
+    .input-container {
+        width: 100%;
+    }
+    
+    .slider-container {
+        margin: 0;
+    }
+
+    /* Content Layout */
+    .content-container {
+        height: calc(100vh - 90px);
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+    /* Content Layout */
+    .content-container {
+        height: calc(100vh - 80px);
+    }
+
+    /* Word Cloud */
+    .wordcloud-container {
+        height: 100%; /* Take full height */
+    }
+
+    /* Word List */
+    .word-list-container {
+        height: 180px;
+        min-height: 180px;
+        max-height: 180px;
+        flex: 0 0 180px;
+    }
+
+    .word-list {
+        height: calc(100% - 80px);
+    }
+
+    .word-list-item {
+        padding: 4px 8px;
+    }
+
+    .word-rank {
+        min-width: 32px;
+    }
+
+    .word-text {
+        margin: 0 8px;
+    }
+
+    .word-frequency {
+        min-width: 50px;
+    }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) {
+    #countrySelector,
+    input[type="range"],
+    .save-button {
+        cursor: default;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        width: 24px;
+        height: 24px;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+        width: 24px;
+        height: 24px;
+    }
+
+    .save-button:hover {
+        transform: none;
+        box-shadow: 0 2px 4px rgba(74, 144, 226, 0.2);
+    }
+
+    .save-button:active {
+        background-color: #357abd;
+    }
+} 

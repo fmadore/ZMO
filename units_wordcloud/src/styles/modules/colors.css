@@ -1,0 +1,42 @@
+/* Color Scheme Module */
+:root {
+    /* Base Colors */
+    --color-primary: #192b51;
+    --color-primary-dark: #111d38;
+    --color-primary-light: #243a6a;
+    --color-primary-alpha: rgba(25, 43, 81, 0.1);
+
+    /* Neutral Colors */
+    --color-white: #ffffff;
+    --color-gray-50: #f8f9fa;
+    --color-gray-100: #f5f5f5;
+    --color-gray-200: #e0e0e0;
+    --color-gray-300: #d0d0d0;
+    --color-gray-400: #a0a0a0;
+    --color-gray-500: #666666;
+    --color-gray-600: #333333;
+    --color-gray-700: #1a1a1a;
+
+    /* Word Cloud Color Schemes */
+    --wordcloud-scheme-1: #264653;
+    --wordcloud-scheme-2: #2a9d8f;
+    --wordcloud-scheme-3: #e9c46a;
+    --wordcloud-scheme-4: #f4a261;
+    --wordcloud-scheme-5: #e76f51;
+    --wordcloud-scheme-6: #8ecae6;
+    --wordcloud-scheme-7: #219ebc;
+    --wordcloud-scheme-8: #023047;
+    --wordcloud-scheme-9: #ffb703;
+    --wordcloud-scheme-10: #fb8500;
+
+    /* Semantic Colors */
+    --color-text-primary: var(--color-gray-600);
+    --color-text-secondary: var(--color-gray-500);
+    --color-text-light: var(--color-gray-400);
+    --color-border: var(--color-gray-200);
+    --color-border-hover: var(--color-gray-300);
+    --color-background: var(--color-white);
+    --color-background-light: var(--color-gray-50);
+    --color-shadow: rgba(0, 0, 0, 0.05);
+    --color-shadow-hover: rgba(0, 0, 0, 0.1);
+} 

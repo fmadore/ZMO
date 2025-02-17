@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script>
+        // Determine base path based on environment
+        const basePath = window.location.hostname.includes('github.io') ? '/ZMO/units_wordcloud' : '';
+        const targetPath = `${basePath}/en/index.html`;
+        
+        // Update meta refresh and window location
+        document.head.innerHTML += `<meta http-equiv="refresh" content="0;url=${targetPath}">`;
+        window.location.href = targetPath;
+    </script>
+</head>
+<body>
+    <script>
+        // Dynamic link generation
+        const linkBasePath = window.location.hostname.includes('github.io') ? '/ZMO/units_wordcloud' : '';
+        document.write(`If you are not redirected automatically, please <a href="${linkBasePath}/en/index.html">click here</a>.`);
+    </script>
+</body>
+</html>

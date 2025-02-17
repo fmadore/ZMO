@@ -1,0 +1,52 @@
+/* Tooltip Module */
+#tooltip {
+    position: fixed;
+    padding: 8px 12px;
+    font-family: var(--font-base);
+    font-size: var(--font-size-sm);
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 6px;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 9999;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: opacity 0.2s ease;
+    max-width: 250px;
+    transform: translate3d(0, 0, 0);
+    will-change: opacity, transform;
+}
+
+#tooltip.visible {
+    opacity: 1;
+}
+
+.tooltip-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.tooltip-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    white-space: nowrap;
+}
+
+.tooltip-row span {
+    color: #666;
+    font-size: var(--font-size-xs);
+}
+
+/* Style for the rank number */
+.tooltip-row:first-child span {
+    color: #4a90e2;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-sm);
+}
+
+.tooltip-row strong {
+    color: #333;
+    font-weight: var(--font-weight-medium);
+} 
