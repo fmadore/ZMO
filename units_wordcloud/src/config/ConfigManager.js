@@ -11,8 +11,12 @@ export class ConfigManager {
                 dimensions: {
                     width: 1000,
                     height: 800,
-                    minHeight: 500,
-                    maxWidth: 1400
+                    minHeight: 600,
+                    maxWidth: 1400,
+                    mobile: {
+                        minHeight: 700,
+                        aspectRatio: 1.1
+                    }
                 },
                 font: {
                     // Primary and fallback fonts
