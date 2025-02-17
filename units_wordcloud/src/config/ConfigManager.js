@@ -13,6 +13,10 @@ export class ConfigManager {
                     height: 800,
                     minHeight: 600,
                     maxWidth: 1400,
+                    tablet: {
+                        minHeight: 600,
+                        aspectRatio: 1.3
+                    },
                     mobile: {
                         minHeight: 700,
                         aspectRatio: 1.1
