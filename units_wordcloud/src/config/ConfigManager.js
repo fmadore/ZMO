@@ -109,7 +109,7 @@ export class ConfigManager {
                 // More flexible path configuration
                 getDataPath: (group, format = 'json') => {
                     const basePath = window.APP_CONFIG?.basePath || '';
-                    return `${basePath ? basePath : '..'}/data/${group === 'combined' ? 'combined' : group}_word_frequencies.${format}`;
+                    return `${basePath ? basePath : '..'}/data/${group}_word_frequencies.${format}`;
                 }
             },
             // More generic groups configuration

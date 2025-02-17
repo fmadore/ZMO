@@ -6,8 +6,8 @@ export class WordCloudDataManager {
         this.currentWords = null;
     }
 
-    async loadData(country, wordCount) {
-        const words = await this.service.loadData(country, wordCount);
+    async loadData(unit, wordCount) {
+        const words = await this.service.loadData(unit, wordCount);
         this.setCurrentWords(words);
         return words;
     }
