@@ -17,27 +17,11 @@ export class UnitSelector {
         // Create container div
         const selectContainer = document.createElement('div');
         selectContainer.className = 'select-container';
-        selectContainer.style.fontFamily = 'var(--font-base)';
 
         // Create select element
         const select = document.createElement('select');
         select.id = 'unitSelector';
         select.className = 'font-medium custom-select';
-        select.style.fontFamily = 'var(--font-base)';
-        select.style.padding = '8px 32px 8px 16px';
-        select.style.border = '1px solid #e2e8f0';
-        select.style.borderRadius = '6px';
-        select.style.backgroundColor = '#fff';
-        select.style.cursor = 'pointer';
-        select.style.appearance = 'none';
-        select.style.webkitAppearance = 'none';
-        select.style.mozAppearance = 'none';
-        select.style.msAppearance = 'none';
-        select.style.backgroundImage = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`;
-        select.style.backgroundRepeat = 'no-repeat';
-        select.style.backgroundPosition = 'right 8px center';
-        select.style.backgroundSize = '16px';
-        select.style.textAlignLast = 'left';
         select.setAttribute('aria-label', 'Select a research unit');
 
         // Add options
