@@ -74,24 +74,30 @@ def save_word_frequencies(word_freq, output_filename):
 def main():
     """
     Main execution function that:
-    1. Processes each input file individually
+    1. Processes each .txt file from the raw_data directory individually
     2. Generates individual word frequency JSON files
     3. Creates a combined analysis of all files
     """
-    # Input files to process
-    files = [
-        'State_Society.txt',
-        'Lives_Ecologies.txt',
-        'Religion-Intellectual-Culture.txt'
-    ]
-    
     # Get the directory where the script is located
     current_dir = os.path.dirname(os.path.abspath(__file__))
+    raw_data_dir = os.path.join(current_dir, 'raw_data')
+    
+    # Ensure raw_data directory exists
+    if not os.path.exists(raw_data_dir):
+        print("Please create a 'raw_data' directory and place your .txt files there")
+        return
+    
+    # Get all .txt files from raw_data directory
+    files = [f for f in os.listdir(raw_data_dir) if f.endswith('.txt')]
+    
+    if not files:
+        print("No .txt files found in the raw_data directory")
+        return
     
     # Process each file individually and maintain a combined list
     all_tokens = []
     for filename in files:
-        file_path = os.path.join(current_dir, filename)
+        file_path = os.path.join(raw_data_dir, filename)
         
         # Read and process each file
         with open(file_path, 'r', encoding='utf-8') as file:
