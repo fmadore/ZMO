@@ -130,8 +130,8 @@ export class ConfigManager {
                 },
                 items: [
                     { value: 'combined', labelKey: 'allUnits' },
-                    { value: 'State_Society', label: 'State & Society' },
-                    { value: 'Lives_Ecologies', label: 'Lives & Ecologies' },
+                    { value: 'State_Society', label: 'State and Society' },
+                    { value: 'Lives_Ecologies', label: 'Lives and Ecologies' },
                     { value: 'Religion-Intellectual-Culture', label: 'Religion and Intellectual Culture' }
                 ]
             }
