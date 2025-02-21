@@ -38,8 +38,8 @@ export class SaveManager {
                     
                     // Get the context and configure it
                     const ctx = canvas.getContext('2d');
-                    ctx.fillStyle = '#000000'; // Set background color
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    // Set transparent background by not filling the background
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
                     
                     // Apply scaling
                     ctx.scale(scale, scale);
